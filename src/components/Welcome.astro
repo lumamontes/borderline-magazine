@@ -1,210 +1,200 @@
 ---
-import astroLogo from '../assets/astro.svg';
-import background from '../assets/background.svg';
+import { Image } from 'astro:assets';
+import AboutImg from '../assets/hero/about.png';
+import CommunityImg from '../assets/hero/community.png';
+import NewsletterImg from '../assets/hero/newsletter.png';
+import ProjectsImg from '../assets/hero/projects.png';
+import MagazineImg from '../assets/hero/magazine.png';
+
+import InstagramIcon from '../assets/instagram.svg';
+import EmailIcon from '../assets/email.svg';
+import TwitterIcon from '../assets/twitter.svg';
 ---
 
-<div id="container">
-	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main>
-		<section id="hero">
-			<a href="https://astro.build"
-				><img src={astroLogo.src} width="115" height="48" alt="Astro Homepage" /></a
-			>
-			<h1>
-				To get started, open the <code><pre>src/pages</pre></code> directory in your project.
-			</h1>
-			<section id="links">
-				<a class="button" href="https://docs.astro.build">Read our docs</a>
-				<a href="https://astro.build/chat"
-					>Join our Discord <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36"
-						><path
-							fill="currentColor"
-							d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.11 0A72.37 72.37 0 0 0 45.64 0a105.89 105.89 0 0 0-26.25 8.09C2.79 32.65-1.71 56.6.54 80.21a105.73 105.73 0 0 0 32.17 16.15 77.7 77.7 0 0 0 6.89-11.11 68.42 68.42 0 0 1-10.85-5.18c.91-.66 1.8-1.34 2.66-2a75.57 75.57 0 0 0 64.32 0c.87.71 1.76 1.39 2.66 2a68.68 68.68 0 0 1-10.87 5.19 77 77 0 0 0 6.89 11.1 105.25 105.25 0 0 0 32.19-16.14c2.64-27.38-4.51-51.11-18.9-72.15ZM42.45 65.69C36.18 65.69 31 60 31 53s5-12.74 11.43-12.74S54 46 53.89 53s-5.05 12.69-11.44 12.69Zm42.24 0C78.41 65.69 73.25 60 73.25 53s5-12.74 11.44-12.74S96.23 46 96.12 53s-5.04 12.69-11.43 12.69Z"
-						></path></svg
-					>
-				</a>
-			</section>
-		</section>
-	</main>
+<div class="min-h-screen w-full bg-white relative overflow-hidden font-sans  ">
+	<!-- Main Content -->
+	<div class="relative min-h-screen flex items-center justify-center p-8 max-w-7x">
+		
+		<!-- Magazine - Top Left -->
+		<a class="absolute top-[20%] left-[15%] flex flex-col items-center transform -rotate-6 group cursor-pointer">
+			<Image src={MagazineImg} alt="Magazine" class="w-40 h-auto mb-2 hover-shake" />
+			<span class="text-sm font-light tracking-wide">Magazine</span>
+		</a>
 
-	<a href="https://astro.build/blog/astro-5/" id="news" class="box">
-		<svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"
-			><path
-				d="M24.667 12c1.333 1.414 2 3.192 2 5.334 0 4.62-4.934 5.7-7.334 12C18.444 28.567 18 27.456 18 26c0-4.642 6.667-7.053 6.667-14Zm-5.334-5.333c1.6 1.65 2.4 3.43 2.4 5.333 0 6.602-8.06 7.59-6.4 17.334C13.111 27.787 12 25.564 12 22.666c0-4.434 7.333-8 7.333-16Zm-6-5.333C15.111 3.555 16 5.556 16 7.333c0 8.333-11.333 10.962-5.333 22-3.488-.774-6-4-6-8 0-8.667 8.666-10 8.666-20Z"
-				fill="#111827"></path></svg
-		>
-		<h2>What's New in Astro 5.0?</h2>
-		<p>
-			From content layers to server islands, click to learn more about the new features and
-			improvements in Astro 5.0
-		</p>
+		<!-- About - Top Center -->
+		<a href="/about" class="absolute top-[5%] left-[45%] flex flex-col items-center transform rotate-2 group cursor-pointer">
+			<Image src={AboutImg} alt="About" class="w-40 h-auto hover-shake" />
+			<span class="text-sm font-light tracking-wide mb-2">About</span>
+		</a>
+
+		<!-- Community - Top Right -->
+		<div class="absolute top-[25%] right-[20%] flex flex-col items-center transform rotate-3 group cursor-pointer">
+			<Image src={CommunityImg} alt="Community" class="w-40 h-auto mb-2 hover-shake" />
+			<span class="text-sm font-light tracking-wide">Community</span>
+		</div>
+
+		<!-- Projects - Middle Left -->
+		<div class="absolute top-[55%] left-[25%] flex flex-col items-center transform -rotate-12 group cursor-pointer">
+			<Image src={ProjectsImg} alt="Projects" class="w-20 h-auto mb-2 hover-shake" />
+			<span class="text-sm font-light tracking-wide">Projects</span>
+		</div>
+
+		<!-- Newsletter - Bottom Right -->
+		<div class="absolute bottom-[25%] right-[25%] flex flex-col items-center transform rotate-6 group cursor-pointer">
+			<Image src={NewsletterImg} alt="Newsletter" class="w-40 h-auto mb-2 hover-shake" />
+			<span class="text-sm font-light tracking-wide">Newsletter</span>
+		</div>
+
+		<!-- Center Title -->
+		<div class="text-center z-10">
+			<h1 class="text-5xl md:text-6xl font-bold mb-1 lowercase inknut-antiqua-bold typewriter">the borderline</h1>
+			<h2 class="text-2xl md:text-4xl font-light mb-4 lowercase">literary magazine</h2>
+			<p class="text-sm text-gray-600 italic">Since 2021</p>
+		</div>
+
+		<!-- Social Icons - Bottom Center -->
+		<div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex gap-6">
+			<a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" 
+				 class="text-green-700 hover:text-green-800 transition-colors w-12 h-12 flex items-center justify-center">
+				<Image src={InstagramIcon} alt="Instagram" class="w-6 h-6"/>
+			</a>
+			<a href="mailto:your-email@example.com" 
+				 class="text-green-700 hover:text-green-800 transition-colors w-12 h-12 flex items-center justify-center">
+				<Image src={EmailIcon} alt="Email" class="w-6 h-6"/>
+			</a>
+			<a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer"
+				 class="text-green-700 hover:text-green-800 transition-colors w-12 h-12 flex items-center justify-center">
+				<Image src={TwitterIcon} alt="Twitter" class="w-6 h-6"/>
+			</a>
+		</div>
+
+		<!-- Post-it Note - Bottom Left -->
+	
+	</div>
+	<a href="/" class="absolute bottom-8 left-8 transform -rotate-3 hover:-rotate-1 transition-transform no-underline group">
+		<div class="bg-yellow-100 border-0 p-6 shadow-md relative max-w-[200px] post-it-font">
+			<!-- Folded corner -->
+			<div class="absolute top-0 right-0 w-0 h-0 border-l-[18px] border-l-transparent border-t-[18px] border-t-yellow-200"></div>
+			
+			<div class="flex items-start gap-2 mb-1">
+				<svg class="w-5 h-5 flex-shrink-0 mt-1" fill="#374151" viewBox="0 0 24 24">
+					<path d="M18.5 9c1.167 1.207 1.75 2.73 1.75 4.5 0 3.95-4.22 4.88-6.28 10.27C13.22 24.48 12.75 23.48 12.75 22.25c0-3.97 5.7-6.03 5.7-12Zm-4.57-4.57c1.37 1.41 2.05 2.94 2.05 4.57 0 5.65-6.9 6.5-5.48 14.84C10.95 23.78 10.25 21.9 10.25 19.4c0-3.8 6.28-8.57 6.28-13.71Zm-5.14-4.57C10.95 3.05 11.75 4.76 11.75 6.28c0 7.14-9.71 9.39-4.57 18.85-2.99-.66-5.14-3.43-5.14-6.86 0-7.43 7.43-8.57 7.43-17.14Z"/>
+				</svg>
+				<h3 class="text-xl font-normal text-gray-800 leading-tight">Volume 5</h3>
+			</div>
+			<p class="text-base text-gray-700 mb-3 ml-7">out now!</p>
+			<p class="text-lg text-gray-800 ml-7 underline decoration-2 underline-offset-2 group-hover:decoration-gray-600">
+				(Read)
+			</p>
+		</div>
 	</a>
 </div>
 
 <style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
+	@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+	
+	.post-it-font {
+		font-family: 'Kalam', cursive;
 	}
 
-	#container {
-		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
-		height: 100%;
+	/* Organic Shake Animation */
+	.hover-shake {
+		transition: transform 0.3s ease;
+		animation: gentleWiggle 3s ease-in-out infinite;
 	}
 
-	main {
-		height: 100%;
-		display: flex;
-		justify-content: center;
+	.hover-shake:hover {
+		animation: organicShake 0.6s ease-in-out;
 	}
 
-	#hero {
-		display: flex;
-		align-items: start;
-		flex-direction: column;
-		justify-content: center;
-		padding: 16px;
+	/* Gentle continuous wiggle like wind */
+	@keyframes gentleWiggle {
+		0% { transform: translate(0, 0) rotate(0deg); }
+		20% { transform: translate(0.8px, 0.4px) rotate(0.25deg); }
+		40% { transform: translate(-0.6px, 0.5px) rotate(-0.2deg); }
+		60% { transform: translate(0.4px, -0.3px) rotate(0.15deg); }
+		80% { transform: translate(-0.3px, 0.2px) rotate(-0.1deg); }
+		100% { transform: translate(0, 0) rotate(0deg); }
 	}
 
-	h1 {
-		font-size: 22px;
-		margin-top: 0.25em;
+	@keyframes organicShake {
+		0% { transform: translate(0, 0) rotate(0deg); }
+		10% { transform: translate(-1px, -1px) rotate(-0.5deg); }
+		20% { transform: translate(1px, -1px) rotate(0.5deg); }
+		30% { transform: translate(-1px, 1px) rotate(-0.3deg); }
+		40% { transform: translate(1px, 1px) rotate(0.3deg); }
+		50% { transform: translate(-0.5px, -0.5px) rotate(-0.2deg); }
+		60% { transform: translate(0.5px, -0.5px) rotate(0.2deg); }
+		70% { transform: translate(-0.5px, 0.5px) rotate(-0.1deg); }
+		80% { transform: translate(0.5px, 0.5px) rotate(0.1deg); }
+		90% { transform: translate(-0.2px, -0.2px) rotate(-0.05deg); }
+		100% { transform: translate(0, 0) rotate(0deg); }
 	}
 
-	#links {
-		display: flex;
-		gap: 16px;
+	/* Typewriter Animation */
+	.typewriter {
+		overflow: hidden;
+		border-right: 2px solid #111827;
+		white-space: nowrap;
+		animation: typing 2.5s steps(13, end), blink-caret 0.75s step-end infinite;
+		animation-delay: 0.5s;
 	}
 
-	#links a {
-		display: flex;
-		align-items: center;
-		padding: 10px 12px;
-		color: #111827;
-		text-decoration: none;
-		transition: color 0.2s;
+	@keyframes typing {
+		from { width: 0; }
+		to { width: 100%; }
 	}
 
-	#links a:hover {
-		color: rgb(78, 80, 86);
+	@keyframes blink-caret {
+		from, to { border-color: transparent; }
+		50% { border-color: #111827; }
 	}
-
-	#links a svg {
-		height: 1em;
-		margin-left: 8px;
-	}
-
-	#links a.button {
-		color: white;
-		background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
-		box-shadow:
-			inset 0 0 0 1px rgba(255, 255, 255, 0.12),
-			inset 0 -2px 0 rgba(0, 0, 0, 0.24);
-		border-radius: 10px;
-	}
-
-	#links a.button:hover {
-		color: rgb(230, 230, 230);
-		box-shadow: none;
-	}
-
-	pre {
-		font-family:
-			ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono',
-			monospace;
-		font-weight: normal;
-		background: linear-gradient(14deg, #d83333 0%, #f041ff 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		margin: 0;
-	}
-
-	h2 {
-		margin: 0 0 1em;
-		font-weight: normal;
-		color: #111827;
-		font-size: 20px;
-	}
-
-	p {
-		color: #4b5563;
-		font-size: 16px;
-		line-height: 24px;
-		letter-spacing: -0.006em;
-		margin: 0;
-	}
-
-	code {
-		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
-	}
-
-	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
-	}
-
-	#news {
-		position: absolute;
-		bottom: 16px;
-		right: 16px;
-		max-width: 300px;
-		text-decoration: none;
-		transition: background 0.2s;
-		backdrop-filter: blur(50px);
-	}
-
-	#news:hover {
-		background: rgba(255, 255, 255, 0.55);
-	}
-
-	@media screen and (max-height: 368px) {
-		#news {
-			display: none;
+	
+	@media (max-width: 768px) {
+		.absolute.top-\[8\%\] { 
+			top: 5%; 
+			left: 5%; 
+		}
+		.absolute.top-\[5\%\] { 
+			top: 3%; 
+			left: 42%; 
+		}
+		.absolute.top-\[15\%\] { 
+			top: 10%; 
+			right: 5%; 
+		}
+		.absolute.top-\[45\%\] { 
+			top: 40%; 
+			left: 8%; 
+		}
+		.absolute.bottom-\[25\%\] { 
+			bottom: 20%; 
+			right: 8%; 
+		}
+		
+		.absolute.top-\[8\%\] img { 
+			width: 80px; 
+		}
+		.absolute.top-\[5\%\] img { 
+			width: 60px; 
+		}
+		.absolute.top-\[15\%\] img { 
+			width: 100px; 
+		}
+		.absolute.top-\[45\%\] img { 
+			width: 50px; 
+		}
+		.absolute.bottom-\[25\%\] img { 
+			width: 80px; 
 		}
 	}
-
-	@media screen and (max-width: 768px) {
-		#container {
-			display: flex;
-			flex-direction: column;
+	
+	@media (max-width: 480px) {
+		.text-5xl {
+			font-size: 2rem;
 		}
-
-		#hero {
-			display: block;
-			padding-top: 10%;
-		}
-
-		#links {
-			flex-wrap: wrap;
-		}
-
-		#links a.button {
-			padding: 14px 18px;
-		}
-
-		#news {
-			right: 16px;
-			left: 16px;
-			bottom: 2.5rem;
-			max-width: 100%;
-		}
-
-		h1 {
-			line-height: 1.5;
+		.text-2xl {
+			font-size: 1.25rem;
 		}
 	}
 </style>
