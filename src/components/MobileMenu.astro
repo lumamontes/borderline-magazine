@@ -1,0 +1,22 @@
+---
+import NavigationItem from './NavigationItem.astro';
+import type { NavigationItem as NavigationItemType } from '../data/navigation';
+
+export interface Props {
+  items: NavigationItemType[];
+  isOpen: boolean;
+}
+
+const { items, isOpen } = Astro.props;
+---
+
+<ul 
+  id="mobile-menu"
+  class={`lg:hidden ${isOpen ? 'flex' : 'hidden'} flex-col gap-1 pb-6 overflow-hidden transition-all duration-300`}
+  role="navigation"
+  aria-label="Mobile navigation menu"
+>
+  {items.map((item) => (
+    <NavigationItem item={item} variant="mobile" />
+  ))}
+</ul>

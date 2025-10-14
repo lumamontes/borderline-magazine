@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import type { NavigationItem } from '../data/navigation';
+
+// Import all images
+import AboutImg from '../assets/hero/about.png';
+import CommunityImg from '../assets/hero/community.png';
+import NewsletterImg from '../assets/hero/newsletter.png';
+import ProjectsImg from '../assets/hero/projects.png';
+import MagazineImg from '../assets/hero/magazine.png';
+
+export interface Props {
+  item: NavigationItem;
+  variant: 'desktop' | 'mobile';
+  className?: string;
+}
+
+const { item, variant, className = '' } = Astro.props;
+
+const isDesktop = variant === 'desktop';
+const iconSize = isDesktop ? 'w-20 h-20' : 'w-12 h-12';
+const iconInnerSize = isDesktop ? 'w-12 h-12' : 'w-8 h-8';
+const textSize = isDesktop ? 'text-lg' : 'text-lg';
+const gap = isDesktop ? 'mb-3' : '';
+const transitionDuration = isDesktop ? 'duration-300' : 'duration-200';
+
+// Map image sources to imported images
+const imageMap: Record<string, any> = {
+  '/src/assets/hero/about.png': AboutImg,
+  '/src/assets/hero/community.png': CommunityImg,
+  '/src/assets/hero/newsletter.png': NewsletterImg,
+  '/src/assets/hero/projects.png': ProjectsImg,
+  '/src/assets/hero/magazine.png': MagazineImg,
+};
+
+const imageSrc = imageMap[item.imageSrc] || MagazineImg;
+---
+
+{isDesktop ? (
+  <li>
+    <a 
+      href={item.href || '#'} 
+      class={`flex flex-col items-center group cursor-pointer transition-all ${transitionDuration} hover:scale-105 hover:opacity-80 ${className}`}
+      aria-label={`Navigate to ${item.label}`}
+    >
+      <div class={`${iconSize} ${gap} flex items-center justify-center rounded-xl group-hover:bg-gray-100 transition-colors ${transitionDuration}`}>
+        <Image src={imageSrc} alt={item.alt} class={`${iconInnerSize} object-contain`} />
+      </div>
+      <span class={`${textSize} font-medium tracking-wide text-gray-700 group-hover:text-gray-900 transition-colors ${transitionDuration}`}>
+        {item.label}
+      </span>
+    </a>
+  </li>
+) : (
+  <li>
+    <a 
+      href={item.href || '#'} 
+      class={`flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-all ${transitionDuration} active:bg-gray-100 group ${className}`}
+      aria-label={`Navigate to ${item.label}`}
+    >
+      <div class={`${iconSize} flex items-center justify-center flex-shrink-0 rounded-lg group-hover:bg-gray-100 transition-colors ${transitionDuration}`}>
+        <Image src={imageSrc} alt={item.alt} class={`${iconInnerSize} object-contain`} />
+      </div>
+      <span class={`${textSize} font-medium tracking-wide text-gray-700 group-hover:text-gray-900 transition-colors ${transitionDuration}`}>
+        {item.label}
+      </span>
+    </a>
+  </li>
+)}

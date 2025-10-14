@@ -1,0 +1,20 @@
+---
+import NavigationItem from './NavigationItem.astro';
+import type { NavigationItem as NavigationItemType } from '../data/navigation';
+
+export interface Props {
+  items: NavigationItemType[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul 
+  class="flex items-center gap-10"
+  role="navigation"
+  aria-label="Desktop navigation menu"
+>
+  {items.map((item) => (
+    <NavigationItem item={item} variant="desktop" />
+  ))}
+</ul>

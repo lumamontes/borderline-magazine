@@ -1,0 +1,106 @@
+---
+import Logo from './Logo.astro';
+import DesktopNavigation from './DesktopNavigation.astro';
+import MobileMenu from './MobileMenu.astro';
+import MobileMenuToggle from './MobileMenuToggle.astro';
+import { navigationItems } from '../data/navigation';
+---
+
+<header class="w-full py-8 px-4 lg:px-8 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+  <nav class="w-full max-w-7xl mx-auto" role="navigation" aria-label="Main navigation">
+    <!-- Mobile Header: Logo + Hamburger -->
+    <div class="lg:hidden flex items-center justify-between mb-6">
+      <Logo variant="mobile" />
+      <MobileMenuToggle />
+    </div>
+
+    <!-- Desktop Header: Logo + Navigation -->
+    <div class="hidden lg:flex items-center justify-between">
+      <Logo variant="desktop" />
+      <DesktopNavigation items={navigationItems} />
+    </div>
+
+    <!-- Mobile Navigation -->
+    <MobileMenu items={navigationItems} isOpen={false} />
+  </nav>
+</header>
+
+<script>
+  /**
+   * Mobile menu toggle functionality
+   * Handles the hamburger menu animation and mobile navigation visibility
+   */
+  class MobileMenuController {
+    private menuToggle: HTMLElement | null;
+    private mobileMenu: HTMLElement | null;
+    private isOpen: boolean = false;
+
+    constructor() {
+      this.menuToggle = document.getElementById('menu-toggle');
+      this.mobileMenu = document.getElementById('mobile-menu');
+      this.init();
+    }
+
+    private init(): void {
+      this.menuToggle?.addEventListener('click', () => this.toggleMenu());
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', (event) => {
+        if (this.isOpen && 
+            !this.menuToggle?.contains(event.target as Node) && 
+            !this.mobileMenu?.contains(event.target as Node)) {
+          this.closeMenu();
+        }
+      });
+
+      // Close menu on escape key
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && this.isOpen) {
+          this.closeMenu();
+        }
+      });
+    }
+
+    private toggleMenu(): void {
+      this.isOpen ? this.closeMenu() : this.openMenu();
+    }
+
+    private openMenu(): void {
+      this.isOpen = true;
+      this.mobileMenu?.classList.remove('hidden');
+      this.mobileMenu?.classList.add('flex');
+      this.menuToggle?.setAttribute('aria-expanded', 'true');
+      this.animateHamburger(true);
+    }
+
+    private closeMenu(): void {
+      this.isOpen = false;
+      this.mobileMenu?.classList.remove('flex');
+      this.mobileMenu?.classList.add('hidden');
+      this.menuToggle?.setAttribute('aria-expanded', 'false');
+      this.animateHamburger(false);
+    }
+
+    private animateHamburger(isOpen: boolean): void {
+      const spans = this.menuToggle?.querySelectorAll('span');
+      if (!spans) return;
+
+      if (isOpen) {
+        // Animate to X
+        spans[0].style.transform = 'rotate(45deg) translateY(8px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translateY(-8px)';
+      } else {
+        // Animate to hamburger
+        spans[0].style.transform = 'rotate(0)';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'rotate(0)';
+      }
+    }
+  }
+
+  // Initialize mobile menu controller when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new MobileMenuController();
+  });
+</script>

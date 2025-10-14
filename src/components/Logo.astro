@@ -1,0 +1,25 @@
+---
+// Logo component with customizable size variants
+export interface Props {
+  variant?: 'mobile' | 'desktop';
+  className?: string;
+}
+
+const { variant = 'desktop', className = '' } = Astro.props;
+---
+
+<a href="/" class={`flex items-center group ${className}`}>
+  <div class="text-left z-10 group-hover:opacity-80 transition-opacity duration-300">
+    {variant === 'mobile' ? (
+      <>
+        <h1 class="text-3xl md:text-4xl font-bold mb-1 lowercase inknut-antiqua-bold text-gray-900 leading-tight">the borderline</h1>
+        <h2 class="text-base md:text-lg font-light mb-2 lowercase text-gray-700">literary magazine</h2>
+      </>
+    ) : (
+      <>
+        <h1 class="text-4xl xl:text-5xl font-bold mb-2 lowercase inknut-antiqua-bold text-gray-900 leading-tight">the borderline</h1>
+        <h2 class="text-xl xl:text-2xl font-light mb-3 lowercase text-gray-700">literary magazine</h2>
+      </>
+    )}
+  </div>
+</a>

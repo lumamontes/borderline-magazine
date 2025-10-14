@@ -1,14 +1,84 @@
 @import "tailwindcss";
 
+/* //apply color pallete variables */
+:root {
+  --color-primary: #82BD99;
+  --color-secondary: #FCEDD2;
+  --color-accent: #BD501C;
+  --color-accent-light: #F9BB7C;
+  --color-text: #374151;
+  --color-background: #FFFFFF;
+  --color-border: #E5E7EB;
+}
 
-* {
-  padding: 0;
+
+/* Reset only specific elements, not all elements with * */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
   margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* Box sizing for all elements */
+*, *::before, *::after {
   box-sizing: border-box;
+}
+
+/* Set default font family for body */
+body {
   font-family: "League Spartan", sans-serif;
   font-optical-sizing: auto;
-  font-weight: normal;
+  line-height: 1.6;
 }
+
+/* Ensure header alignment works properly */
+header {
+  display: block;
+  width: 100%;
+}
+
+header nav {
+  display: block;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ensure Tailwind utilities work properly */
+.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.max-w-7xl {
+  max-width: 80rem !important;
+}
+
+/* Debug styles - remove these after confirming alignment works */
+/* 
+header {
+  border: 2px solid red !important;
+}
+
+header nav {
+  border: 2px solid blue !important;
+}
+*/
 
 .inknut-antiqua-light {
   font-family: "Inknut Antiqua", serif;
@@ -50,5 +120,46 @@
   font-family: "Inknut Antiqua", serif;
   font-weight: 900;
   font-style: normal;
+}
+
+/* Header specific styles */
+.hover-shake {
+  transition: transform 0.3s ease;
+}
+
+.hover-shake:hover {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+
+/* Smooth transitions for header elements */
+header a {
+  transition: all 0.3s ease;
+}
+
+/* Professional spacing and alignment */
+.header-nav-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.header-nav-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.header-nav-item:hover::before {
+  left: 100%;
 }
 
