@@ -1,73 +1,27 @@
 ---
-import { Image } from 'astro:assets';
-import AboutImg from '../assets/hero/about.png';
-import CommunityImg from '../assets/hero/community.png';
-import NewsletterImg from '../assets/hero/newsletter.png';
-import ProjectsImg from '../assets/hero/projects.png';
-import MagazineImg from '../assets/hero/magazine.png';
-
-import InstagramIcon from '../assets/instagram.svg';
-import EmailIcon from '../assets/email.svg';
-import TwitterIcon from '../assets/twitter.svg';
-import ReadNow from './ReadNow.astro';
+	import ReadNow from './ReadNow.astro';
+import Header from './Header.astro';
+import SocialMedia from './SocialMedia.astro';
 ---
 
 <div class="min-h-screen w-full bg-white relative overflow-hidden font-sans  ">
 	<!-- Main Content -->
-	<div class="relative min-h-screen flex items-center justify-center p-8 max-w-7x">
-		
-		<!-- Magazine - Top Left -->
-		<a class="absolute top-[20%] left-[15%] flex flex-col items-center transform -rotate-6 group cursor-pointer">
-			<Image src={MagazineImg} alt="Magazine" class="w-40 h-auto mb-2 hover-shake" />
-			<span class="text-3xl  font-extralight tracking-wide transition hover:color-primary-100">Magazine</span>
-		</a>
+			<Header variant={'transparent'}  showLogo={true} />
 
-		<!-- About - Top Center -->
-		<a href="/about" class="absolute top-[5%] left-[45%] flex flex-col items-center transform rotate-2 group cursor-pointer">
-			<Image src={AboutImg} alt="About" class="w-40 h-auto hover-shake" />
-			<span class="text-3xl  font-extralight tracking-wide transition hover:color-primary-100 mb-2">About</span>
-		</a>
+	<div class="relative h-[85vh] flex flex-col items-center justify-center p-8 max-w-7x">
 
-		<!-- Community - Top Right -->
-		<a href="/community" class="absolute top-[25%] right-[20%] flex flex-col items-center transform rotate-3 group cursor-pointer">
-			<Image src={CommunityImg} alt="Community" class="w-40 h-auto mb-2 hover-shake" />
-			<span class="text-3xl  font-extralight tracking-wide transition hover:color-primary-100">Community</span>
-		</a>
-
-		<!-- Projects - Middle Left -->
-		<a href="/projects" class="absolute top-[55%] left-[25%] flex flex-col items-center transform -rotate-12 group cursor-pointer">
-			<Image src={ProjectsImg} alt="Projects" class="w-20 h-auto mb-2 hover-shake" />
-			<span class="text-3xl  font-extralight tracking-wide transition hover:color-primary-100">Projects</span>
-		</a>
-
-		<!-- Newsletter - Bottom Right -->
-		<a href="/newsletter" class="absolute bottom-[25%] right-[25%] flex flex-col items-center transform rotate-6 group cursor-pointer">
-			<Image src={NewsletterImg} alt="Newsletter" class="w-40 h-auto mb-2 hover-shake" />
-			<span class="text-3xl  font-extralight tracking-wide transition hover:color-primary-100">Newsletter</span>
-		</a>
-
-		<!-- Center Title -->
-		<div class="text-center z-10">
-			<h1 class="text-5xl md:text-6xl font-bold mb-1 lowercase inknut-antiqua-bold typewriter">the borderline</h1>
-			<h2 class="text-2xl md:text-4xl font-light mb-4 lowercase">literary magazine</h2>
-			<p class="text-sm text-gray-600 italic">Since 2021</p>
+		<div class="absolute top-0 left-0 w-full z-20">
 		</div>
-
-		<!-- Social Icons - Bottom Center -->
-		<div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex gap-6">
-			<a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" 
-				 class="text-green-700 hover:text-green-800 transition-colors w-12 h-12 flex items-center justify-center">
-				<Image src={InstagramIcon} alt="Instagram" class="w-6 h-6"/>
-			</a>
-			<a href="mailto:your-email@example.com" 
-				 class="text-green-700 hover:text-green-800 transition-colors w-12 h-12 flex items-center justify-center">
-				<Image src={EmailIcon} alt="Email" class="w-6 h-6"/>
-			</a>
-			<a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer"
-				 class="text-green-700 hover:text-green-800 transition-colors w-12 h-12 flex items-center justify-center">
-				<Image src={TwitterIcon} alt="Twitter" class="w-6 h-6"/>
-			</a>
-		</div>	
+		<div class="absolute inset-0 bg-grid-slate-100 bg-cover bg-center bg-no-repeat  z-0 pointer-events-none"></div>
+			<!-- Center Title -->
+			<div class="text-center z-10">
+				<h1 class="text-5xl md:text-6xl font-bold mb-1 lowercase inknut-antiqua-bold typewriter bg-[#FCEDD2]">the borderline</h1>
+				<h2 class="text-2xl md:text-4xl font-light mb-4 lowercase bg-[#FCEDD2]">literary magazine</h2>
+				<p class="text-sm text-gray-600 italic ">Since 2021</p>
+			</div>
+			<!-- Social Icons - Bottom Center -->
+			 <SocialMedia />
+		</div>
 	</div>
 	<ReadNow />
 </div>
@@ -131,52 +85,12 @@ import ReadNow from './ReadNow.astro';
 		from, to { border-color: transparent; }
 		50% { border-color: #111827; }
 	}
-	
-	@media (max-width: 768px) {
-		.absolute.top-\[8\%\] { 
-			top: 5%; 
-			left: 5%; 
-		}
-		.absolute.top-\[5\%\] { 
-			top: 3%; 
-			left: 42%; 
-		}
-		.absolute.top-\[15\%\] { 
-			top: 10%; 
-			right: 5%; 
-		}
-		.absolute.top-\[45\%\] { 
-			top: 40%; 
-			left: 8%; 
-		}
-		.absolute.bottom-\[25\%\] { 
-			bottom: 20%; 
-			right: 8%; 
-		}
-		
-		.absolute.top-\[8\%\] img { 
-			width: 80px; 
-		}
-		.absolute.top-\[5\%\] img { 
-			width: 60px; 
-		}
-		.absolute.top-\[15\%\] img { 
-			width: 100px; 
-		}
-		.absolute.top-\[45\%\] img { 
-			width: 50px; 
-		}
-		.absolute.bottom-\[25\%\] img { 
-			width: 80px; 
-		}
-	}
-	
-	@media (max-width: 480px) {
-		.text-5xl {
-			font-size: 2rem;
-		}
-		.text-2xl {
-			font-size: 1.25rem;
-		}
-	}
+
+  .bg-grid-slate-100 {
+    background-image: url('../assets/hero-bg.png');
+		background-size: cover;
+		background-position: center center;
+		background-repeat: no-repeat;
+  }
+
 </style>

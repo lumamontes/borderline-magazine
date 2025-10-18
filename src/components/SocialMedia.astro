@@ -1,20 +1,20 @@
 ---
-import InstagramIcon from '../assets/instagram.svg';
-import EmailIcon from '../assets/email.svg';
-import TwitterIcon from '../assets/twitter.svg';
+import InstagramIcon from '../assets/instagram.png';
+import EmailIcon from '../assets/mail.png';
+import TwitterIcon from '../assets/twitter.png';
 import { Image } from 'astro:assets';
 ---
 <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex gap-6">
   <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" 
       class="text-green-700 hover:text-green-800 transition-colors w-12 h-12 flex items-center justify-center">
-    <Image src={InstagramIcon} alt="Instagram" class="w-6 h-6"/>
+    <Image src={InstagramIcon} alt="Instagram" width={100}/>
   </a>
   <a href="mailto:your-email@example.com" 
       class="text-green-700 hover:text-green-800 transition-colors w-12 h-12 flex items-center justify-center">
-    <Image src={EmailIcon} alt="Email" class="w-6 h-6"/>
+    <Image src={EmailIcon} alt="Email" width={100}/>
   </a>
   <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer"
       class="text-green-700 hover:text-green-800 transition-colors w-12 h-12 flex items-center justify-center">
-    <Image src={TwitterIcon} alt="Twitter" class="w-6 h-6"/>
+    <Image src={TwitterIcon} alt="Twitter"width={100} />
   </a>
 </div>	

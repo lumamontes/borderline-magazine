@@ -40,12 +40,9 @@ const imageSrc = imageMap[item.imageSrc] || MagazineImg;
   <li>
     <a 
       href={item.href || '#'} 
-      class={`flex flex-col items-center group cursor-pointer transition-all ${transitionDuration} hover:scale-105 hover:opacity-80 ${className}`}
+      class={`flex flex-col bg-white p-2 items-center group cursor-pointer transition-all ${transitionDuration} hover:scale-105 hover:opacity-80 ${className}`}
       aria-label={`Navigate to ${item.label}`}
     >
-      <div class={`${iconSize} ${gap} flex items-center justify-center rounded-xl group-hover:bg-gray-100 transition-colors ${transitionDuration}`}>
-        <Image src={imageSrc} alt={item.alt} class={`${iconInnerSize} object-contain`} />
-      </div>
       <span class={`${textSize} font-medium tracking-wide text-gray-700 group-hover:text-gray-900 transition-colors ${transitionDuration}`}>
         {item.label}
       </span>
@@ -58,9 +55,6 @@ const imageSrc = imageMap[item.imageSrc] || MagazineImg;
       class={`flex items-center gap-4 p-4 rounded-xl hover:bg-gray-50 transition-all ${transitionDuration} active:bg-gray-100 group ${className}`}
       aria-label={`Navigate to ${item.label}`}
     >
-      <div class={`${iconSize} flex items-center justify-center flex-shrink-0 rounded-lg group-hover:bg-gray-100 transition-colors ${transitionDuration}`}>
-        <Image src={imageSrc} alt={item.alt} class={`${iconInnerSize} object-contain`} />
-      </div>
       <span class={`${textSize} font-medium tracking-wide text-gray-700 group-hover:text-gray-900 transition-colors ${transitionDuration}`}>
         {item.label}
       </span>
