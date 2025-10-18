@@ -1,0 +1,52 @@
+---
+import Button from './Button.astro';
+import { Image } from 'astro:assets';
+import AboutImg from '../assets/about.png';
+export interface Props {
+  lang?: 'pt';
+}
+---
+
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] -z-10"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32  md:pt-20 pb-16 sm:pb-20 md:pb-24">
+    
+    <div class="text-left">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+        <div class="w-full md:w-1/2 text-left md:text-start">
+            <div class="relative">
+              <Image 
+                src={AboutImg} 
+                alt="ThetaHarpia - Sistema de gestão para psicólogos demonstrando funcionalidades de agendamento" 
+                class="w-full h-auto object-cover rounded-lg"
+                width={480}
+                height={270}
+                loading="eager"
+                format="webp"
+                fetchpriority="high"
+              />
+            <!-- <div class="absolute inset-0 rounded-lg bg-gradient-to-tr from-transparent via-transparent to-white/10 pointer-events-none"></div> -->
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 flex justify-center md:justify-end items-center flex-col">
+          <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight theta-text-dark">
+          About <br/>
+         </h1>
+
+          <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-none md:max-w-2xl mx-auto md:mx-0 leading-relaxed theta-text-dark px-4 md:px-0">
+            We exist to draw rich and collaborative ‘borderlines’ of connection within the litmag community through inventive publications and projects. Themes in the works include ‘print / digital,’ ‘writing / visual art,’ ‘emerging / established.’ 
+          </p>
+          <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-none md:max-w-2xl mx-auto md:mx-0 leading-relaxed theta-text-dark px-4 md:px-0">
+            In our expanded form, you’ll still recognize many of our core activities and interests, including our main litmag volumes. At the same time, we hope you will find thought-provoking surprises and more avenues to participate in our wider range of activities, including new litmag community-centred projects and publications.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bg-grid-slate-100 {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.02)'%3e%3cpath d='m0 .5 32 0M.5 0l0 32'/%3e%3c/svg%3e");
+  }
+</style>

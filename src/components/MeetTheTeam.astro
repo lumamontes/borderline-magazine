@@ -1,0 +1,68 @@
+---
+import Button from './Button.astro';
+import { Image } from 'astro:assets';
+import FlowerImg from '../assets/flower.png';
+export interface Props {
+  lang?: 'pt';
+}
+
+const team = [
+  {
+    img: FlowerImg,
+    name: 'Enling',
+    bio: 'Enling Liao is aniversity student in Australia studying Politics, Philosophy, & Economics and Applied Data Analytics. She has been a Community Ambassador for Write the World and is also currently a Web Content Intern at Sine Theta Magazine. She loves early mornings, oranges, mountains, and fresh green vegetables. 🌿🍊🌄',
+  },
+  {
+    img: FlowerImg,  
+    name: 'Luana',
+    bio: 'Luana Góes is a mixed media artist and designer from Brazil. Born in 2002, she is from the Amazon region (Amapá) and has a twin sister, Luma, who coded this website! When not doing anything creative, you can find her playing electric guitar and watching women’s sports. Her favorite musicians are Little Simz and Warpaint. You can find her on Instagram at @luana.g.m'
+  },
+  {
+    img: FlowerImg,
+    name: 'Myra',
+    bio: 'Myra Kamal is a college student from Arizona. She was named the 2021-2022 Phoenix Youth Poet Laureate. In her free time, she loves to bike, read chapbook gems, or drink a hot bowl of soup on the rare rainy day.'
+  }
+];
+
+---
+
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] -z-10"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32  md:pt-20 pb-16 sm:pb-20 md:pb-24 h-[50vh]">
+      <div class="text-left">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+          <div class="w-full md:w-1/2 text-left md:text-start">
+              <div class="relative">
+                <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white">
+                  Meet<br>
+                  The Team
+                </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</section>
+
+
+<!-- //team members section -->
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32  md:pt-20 pb-16 sm:pb-20 md:pb-24">
+<section class="grid grid-cols-1 md:grid-cols-3">
+  {team.map((member) => (
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <Image src={member.img} alt={member.name} class="rounded-lg mb-4" />
+      <h2 class="text-2xl font-bold mb-4 theta-text-dark">{member.name}</h2>
+      <p class="text-lg text-gray-700 leading-relaxed">{member.bio}</p>
+    </div>
+  ))}
+</section>
+</div>
+
+<style>
+  .bg-grid-slate-100 {
+    background-image: url('../assets/meet.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+</style>
