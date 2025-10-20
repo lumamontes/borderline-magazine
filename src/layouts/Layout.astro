@@ -1,22 +1,122 @@
 ---
 import '../global.css';
+
+export interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	url?: string;
+	type?: string;
+	keywords?: string;
+	author?: string;
+	publishedTime?: string;
+	modifiedTime?: string;
+	section?: string;
+	tags?: string[];
+}
+
+const {
+	title = "The Borderline Literary Magazine - Explore. Create. Inspire.",
+	description = "The Borderline Literary Magazine - A platform for emerging and established writers and artists. Since 2021, we've been drawing rich and collaborative 'borderlines' of connection within the litmag community through inventive publications and projects.",
+	image = "/logo.png",
+	url = Astro.url.href,
+	type = "website",
+	keywords = "literary magazine, creative writing, poetry, fiction, art, literature, emerging writers, established writers, print magazine, digital magazine, literary community",
+	author = "The Borderline Literary Magazine",
+	publishedTime,
+	modifiedTime,
+	section = "Literature",
+	tags = ["literature", "magazine", "creative writing", "poetry", "art"]
+} = Astro.props;
+
+const siteURL = Astro.site || 'https://borderlinelitmag.com';
+const canonicalURL = new URL(url, siteURL);
+const socialImageURL = new URL(image, siteURL);
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
-
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		
+		<!-- Primary Meta Tags -->
+		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="author" content={author} />
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="English" />
+		<meta name="revisit-after" content="7 days" />
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalURL} />
+		
+		<!-- Favicon and Icons -->
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon.svg" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon.svg" />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content={type} />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={socialImageURL} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:site_name" content="The Borderline Literary Magazine" />
+		<meta property="og:locale" content="en_US" />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={socialImageURL} />
+		<meta property="twitter:creator" content="@borderlinelitmag" />
+		<meta property="twitter:site" content="@borderlinelitmag" />
+		
+		<!-- Additional Meta Tags -->
+		<meta name="theme-color" content="#FCEDD2" />
+		<meta name="msapplication-TileColor" content="#FCEDD2" />
+		<meta name="application-name" content="The Borderline Literary Magazine" />
+		
+		<!-- Article specific meta tags -->
+		{publishedTime && <meta property="article:published_time" content={publishedTime} />}
+		{modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+		{section && <meta property="article:section" content={section} />}
+		{tags && tags.map(tag => <meta property="article:tag" content={tag} />)}
+		
+		<!-- Preconnect to external domains -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+		
+		<!-- Structured Data -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"name": "The Borderline Literary Magazine",
+			"url": "https://borderlinelitmag.com",
+			"logo": "https://borderlinelitmag.com/logo.png",
+			"description": "A literary magazine platform for emerging and established writers and artists, creating collaborative connections within the litmag community through inventive publications and projects.",
+			"foundingDate": "2021",
+			"sameAs": [
+				"https://twitter.com/borderlinelitmag",
+				"https://instagram.com/borderlinelitmag"
+			],
+			"publisher": {
+				"@type": "Organization",
+				"name": "The Borderline Literary Magazine"
+			}
+		}
+		</script>
 	</head>
 	<body>
 		<slot />

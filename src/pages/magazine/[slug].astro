@@ -1,0 +1,149 @@
+---
+import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
+import Header from "../../components/Header.astro";
+import LayoutHeader from "../../layouts/LayoutHeader.astro";
+import MagazinePreviewCarousel from "../../components/MagazinePreviewCarousel.astro";
+import Preview1 from "../../assets/magazines/volume1/preview1.png";
+import Preview2 from "../../assets/magazines/volume1/preview2.png";
+import Preview3 from "../../assets/magazines/volume1/preview3.png";
+
+export async function getStaticPaths() {
+  const magazines = await getCollection("magazines");
+  return magazines.map((magazine) => ({
+    params: { slug: magazine.slug },
+    props: { magazine },
+  }));
+}
+
+const { magazine } = Astro.props;
+const { Content } = await magazine.render();
+
+// SEO data
+const seoTitle = magazine.data.seo?.title || `${magazine.data.title} | Borderline Litmag`;
+const seoDescription = magazine.data.seo?.description || magazine.data.description;
+const baseURL = Astro.site || "http://localhost:4321";
+const canonicalURL = new URL(`/magazine/${magazine.slug}`, baseURL);
+
+// Structured data for individual magazine
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": magazine.data.title,
+  "description": magazine.data.description,
+  "url": canonicalURL.toString(),
+  "datePublished": magazine.data.publishDate.toISOString(),
+  "inLanguage": "en",
+  "genre": "Literary Magazine",
+  "keywords": magazine.data.tags.join(", "),
+  "isPartOf": {
+    "@type": "CollectionPage",
+    "name": "Borderline Litmag Magazine Collection",
+    "url": new URL("/magazine", baseURL).toString()
+  }
+};
+---
+
+<!-- SEO Meta Tags -->
+<title>{seoTitle}</title>
+<meta name="description" content={seoDescription} />
+<meta name="keywords" content={magazine.data.tags.join(", ")} />
+<link rel="canonical" href={canonicalURL.toString()} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="article" />
+<meta property="og:url" content={canonicalURL.toString()} />
+<meta property="og:title" content={seoTitle} />
+<meta property="og:description" content={seoDescription} />
+<meta property="og:image" content={new URL(magazine.data.coverImage, baseURL).toString()} />
+<meta property="article:published_time" content={magazine.data.publishDate.toISOString()} />
+<meta property="article:author" content="Borderline Litmag" />
+<meta property="article:section" content="Literature" />
+{magazine.data.tags.map(tag => (
+  <meta property="article:tag" content={tag} />
+))}
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL.toString()} />
+<meta property="twitter:title" content={seoTitle} />
+<meta property="twitter:description" content={seoDescription} />
+<meta property="twitter:image" content={new URL(magazine.data.coverImage, baseURL).toString()} />
+
+<!-- Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+<LayoutHeader>
+  
+  <Header />
+  
+  <!-- Breadcrumb -->
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8" aria-label="Breadcrumb">
+    <ol class="flex items-center space-x-2 text-sm text-gray-500">
+      <li><a href="/" class="hover:text-gray-700">Home</a></li>
+      <li>/</li>
+      <li><a href="/magazine" class="hover:text-gray-700">Magazine</a></li>
+      <li>/</li>
+      <li class="text-gray-900">{magazine.data.title}</li>
+    </ol>
+  </nav>
+
+  <!-- Magazine Header -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] -z-10"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+        <div class="w-full md:w-1/2 text-left md:text-start">
+          <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight theta-text-dark inknut-antiqua-bold">
+            {magazine.data.title}
+          </h1>
+          {magazine.data.subtitle && (
+            <h2 class="text-xl sm:text-2xl md:text-3xl mb-4 text-gray-600">
+              {magazine.data.subtitle}
+            </h2>
+          )}
+          <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-none md:max-w-2xl mx-auto md:mx-0 leading-relaxed theta-text-dark px-4 md:px-0">
+            {magazine.data.description}
+          </p>
+          <div class="flex flex-wrap gap-2 mb-6">
+            {magazine.data.tags.map((tag) => (
+              <span class="px-3 py-1 bg-gray-100 text-sm rounded-full">{tag}</span>
+            ))}
+          </div>
+          <div class="text-sm text-gray-500">
+            <span>Volume {magazine.data.volume}</span>
+            <span class="mx-2">•</span>
+            <span>Published {magazine.data.publishDate.toLocaleDateString()}</span>
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 flex justify-center md:justify-end items-center flex-col">
+          <div class="relative">
+            <Image
+              src={magazine.data.coverImage}
+              alt={magazine.data.title}
+              class="w-full h-auto object-cover"
+              width={480}
+              height={270}
+              loading="eager"
+              format="webp"
+              fetchpriority="high"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Magazine Preview Carousel (only for Volume 1) -->
+  {magazine.data.volume === 1 && (
+    <MagazinePreviewCarousel previewImages={[Preview1, Preview2, Preview3]} />
+  )}
+
+  <!-- Magazine Content -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
+    <div class="prose prose-lg max-w-none">
+      <Content />
+    </div>
+  </section>
+</LayoutHeader>
+

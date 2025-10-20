@@ -2,10 +2,62 @@
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const seoData = {
+	title: "The Borderline Literary Magazine - Explore. Create. Inspire.",
+	description: "The Borderline Literary Magazine - A platform for emerging and established writers and artists. Since 2021, we've been drawing rich and collaborative 'borderlines' of connection within the litmag community through inventive publications and projects.",
+	image: "/logo.png",
+	keywords: "literary magazine, creative writing, poetry, fiction, art, literature, emerging writers, established writers, print magazine, digital magazine, literary community, The Borderline, litmag",
+	type: "website"
+};
+
+// Additional structured data for homepage
+const homepageStructuredData = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	"name": "The Borderline Literary Magazine",
+	"url": "https://borderlinelitmag.com",
+	"description": "A literary magazine platform for emerging and established writers and artists, creating collaborative connections within the litmag community through inventive publications and projects.",
+	"publisher": {
+		"@type": "Organization",
+		"name": "The Borderline Literary Magazine",
+		"foundingDate": "2021",
+		"logo": "https://borderlinelitmag.com/logo.png"
+	},
+	"potentialAction": {
+		"@type": "SearchAction",
+		"target": "https://borderlinelitmag.com/magazine?q={search_term_string}",
+		"query-input": "required name=search_term_string"
+	},
+	"mainEntity": {
+		"@type": "Organization",
+		"name": "The Borderline Literary Magazine",
+		"alternateName": "Borderline LitMag",
+		"url": "https://borderlinelitmag.com",
+		"logo": "https://borderlinelitmag.com/logo.png",
+		"description": "A literary magazine platform for emerging and established writers and artists, creating collaborative connections within the litmag community through inventive publications and projects.",
+		"foundingDate": "2021",
+		"sameAs": [
+			"https://twitter.com/borderlinelitmag",
+			"https://instagram.com/borderlinelitmag"
+		],
+		"knowsAbout": [
+			"Creative Writing",
+			"Poetry",
+			"Fiction",
+			"Visual Art",
+			"Literary Community",
+			"Print Magazine",
+			"Digital Magazine",
+			"Emerging Writers",
+			"Established Writers"
+		]
+	}
+};
 ---
 
-<Layout>
+<Layout {...seoData}>
 	<Welcome />
+	
+	<!-- Additional structured data for homepage -->
+	<script type="application/ld+json" set:html={JSON.stringify(homepageStructuredData)}></script>
 </Layout>

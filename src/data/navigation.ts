@@ -11,6 +11,7 @@ export const navigationItems: NavigationItem[] = [
   {
     id: 'magazine',
     label: 'Magazine',
+    href: '/magazine',
     imageSrc: '/src/assets/hero/magazine.png',
     alt: 'Magazine'
   },
