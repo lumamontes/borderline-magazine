@@ -16,10 +16,9 @@ const magazines = allMagazines.sort((a, b) => a.data.volume - b.data.volume);
 // SEO data
 const seoTitle = "Magazine Collection | Borderline Litmag";
 const seoDescription = "Explore our collection of literary magazines featuring visual arts, poetry, and prose from creatives around the globe. Read past volumes and discover new voices.";
-const baseURL = Astro.site || "http://localhost:4321";
+const baseURL = Astro.site || "https://borderlinemag.netlify.app";
 const canonicalURL = new URL("/magazine", baseURL);
 
-// Structured data for SEO
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
@@ -103,14 +102,14 @@ const structuredData = {
               <Image
                 src={MagazineImg}
                 alt="ThetaHarpia - Sistema de gestão para psicólogos demonstrando funcionalidades de agendamento"
-                class="w-full h-auto object-cover rounded-lg"
+                class="w-full h-auto object-cover rounded-sm"
                 width={480}
                 height={270}
                 loading="eager"
                 format="webp"
                 fetchpriority="high"
               />
-              <!-- <div class="absolute inset-0 rounded-lg bg-gradient-to-tr from-transparent via-transparent to-white/10 pointer-events-none"></div> -->
+              <!-- <div class="absolute inset-0 rounded-sm bg-gradient-to-tr from-transparent via-transparent to-white/10 pointer-events-none"></div> -->
             </div>
           </div>
         </div>
@@ -135,7 +134,7 @@ const structuredData = {
               <Image
                 src={magazine.data.coverImage}
                 alt={magazine.data.title}
-                class="w-full aspect-[3/4] object-cover rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105"
+                class="w-full aspect-[3/4] object-cover rounded-sm shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105"
                 width={300}
                 height={400}
                 loading="lazy"
@@ -147,7 +146,7 @@ const structuredData = {
               <Image
                 src={magazine.data.coverImage}
                 alt={magazine.data.title}
-                class="w-full aspect-[3/4] object-cover rounded-lg shadow-lg"
+                class="w-full aspect-[3/4] object-cover rounded-sm shadow-lg"
                 width={300}
                 height={400}
                 loading="lazy"

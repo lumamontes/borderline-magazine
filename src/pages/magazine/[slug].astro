@@ -22,7 +22,7 @@ const { Content } = await magazine.render();
 // SEO data
 const seoTitle = magazine.data.seo?.title || `${magazine.data.title} | Borderline Litmag`;
 const seoDescription = magazine.data.seo?.description || magazine.data.description;
-const baseURL = Astro.site || "http://localhost:4321";
+const baseURL = Astro.site || "https://borderlinemag.netlify.app";
 const canonicalURL = new URL(`/magazine/${magazine.slug}`, baseURL);
 
 // Structured data for individual magazine
