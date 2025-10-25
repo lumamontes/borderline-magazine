@@ -20,6 +20,10 @@ const { Content } = await magazine.render();
 // Import all magazine preview images using Vite's import.meta.glob
 const allMagazineImages = import.meta.glob<{ default: ImageMetadata }>('../../../assets/magazines/**/*.{png,jpg,jpeg,gif,webp}', { eager: true });
 
+// Get cover image
+const coverImagePath = magazine.data.coverImage.replace('/src/assets/', '../../../assets/');
+const coverImage = allMagazineImages[coverImagePath]?.default;
+
 // Get all page images for this specific magazine
 const pageImages = Object.values(allMagazineImages)
   .filter((img) => img.default.src.includes(magazine.data.pagesDir!))
@@ -136,7 +140,7 @@ const structuredData = {
         title={`${magazine.data.title} - Complete Digital Edition`}
         isPreview={false}
         colorPalette={colorPalette}
-        coverImage={magazine.data.coverImage}
+        coverImage={coverImage?.src || magazine.data.coverImage}
         client:load
       />
     </div>

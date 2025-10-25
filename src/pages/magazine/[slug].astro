@@ -19,6 +19,12 @@ const { magazine } = Astro.props;
 const { Content } = await magazine.render();
 
 const allMagazineImages = import.meta.glob<{ default: ImageMetadata }>('../../assets/magazines/**/*.{png,jpg,jpeg,gif,webp}', { eager: true });
+
+// Get cover image
+const coverImagePath = magazine.data.coverImage.replace('/src/assets/', '../../assets/');
+const coverImage = allMagazineImages[coverImagePath]?.default;
+
+// Get page images
 const allPageImages = Object.values(allMagazineImages)
   .filter((img) => img.default.src.includes(magazine.data.pagesDir!))
   .map((img) => ({ src: img.default.src, alt: `${magazine.data.title} page` }));
@@ -97,7 +103,7 @@ const structuredData = {
     <div 
       class="absolute inset-0 -z-20"
       style={`
-        background-image: url('${magazine.data.coverImage}');
+        background-image: url('${coverImage?.src || magazine.data.coverImage}');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -135,7 +141,7 @@ const structuredData = {
         <div class="w-full md:w-1/2 flex justify-center md:justify-end items-center flex-col">
           <div class="relative">
             <Image
-              src={magazine.data.coverImage}
+              src={coverImage || magazine.data.coverImage}
               alt={magazine.data.title}
               class="w-full h-auto object-cover"
               width={480}
@@ -159,7 +165,7 @@ const structuredData = {
         isPreview={true}
         magazineSlug={magazine.slug}
         colorPalette={colorPalette}
-        coverImage={magazine.data.coverImage}
+        coverImage={coverImage?.src || magazine.data.coverImage}
         client:load
       />
     </div>
