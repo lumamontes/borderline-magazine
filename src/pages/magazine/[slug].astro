@@ -26,7 +26,7 @@ const coverImage = allMagazineImages[coverImagePath]?.default;
 
 // Get page images
 const allPageImages = Object.values(allMagazineImages)
-  .filter((img) => img.default.src.includes(magazine.data.pagesDir!))
+  .filter((img) => img.default.src.includes(magazine.data.pagesDir))
   .map((img) => ({ src: img.default.src, alt: `${magazine.data.title} page` }));
 
 console.log('Magazine pagesDir:', magazine.data.pagesDir);
