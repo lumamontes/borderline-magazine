@@ -8,7 +8,6 @@ import MagazineImg from "../assets/magazine.png";
 // Get all magazines from content collections
 const allMagazines = await getCollection("magazines");
 const magazines = allMagazines.sort((a, b) => a.data.volume - b.data.volume).filter(magazine => magazine.data.display);
-
 // Import all magazine cover images
 const allMagazineImages = import.meta.glob<{ default: ImageMetadata }>('../assets/magazines/**/*.{png,jpg,jpeg,gif,webp}', { eager: true });
 
@@ -19,7 +18,9 @@ const magazinesWithImages = magazines.map(magazine => {
   
   return {
     ...magazine,
-    coverImage: coverImage || magazine.data.coverImage
+    coverImage: coverImage || magazine.data.coverImage,
+    // Add high-quality processing for the image
+    coverImageMetadata: coverImage
   };
 });
 
@@ -142,10 +143,12 @@ const structuredData = {
                 src={magazine.coverImage}
                 alt={magazine.data.title}
                 class="w-full aspect-[3/4] object-cover rounded-sm shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105"
-                width={300}
-                height={400}
+                width={600}
+                height={800}
                 loading="lazy"
                 format="webp"
+                quality={95}
+                densities={[1, 2]}
               />
             </a>
           ) : (
@@ -154,10 +157,12 @@ const structuredData = {
                 src={magazine.coverImage}
                 alt={magazine.data.title}
                 class="w-full aspect-[3/4] object-cover rounded-sm shadow-lg"
-                width={300}
-                height={400}
+                width={600}
+                height={800}
                 loading="lazy"
                 format="webp"
+                quality={95}
+                densities={[1, 2]}
               />
             </div>
           )

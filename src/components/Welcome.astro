@@ -1,7 +1,8 @@
 ---
 	import ReadNow from './ReadNow.astro';
-import Header from './Header.astro';
-import SocialMedia from './SocialMedia.astro';
+	import Header from './Header.astro';
+	import SocialMedia from './SocialMedia.astro';
+	import heroBg from '../assets/hero-bg.png';
 ---
 
 <main class="min-h-screen w-full bg-white relative overflow-hidden font-sans">
@@ -10,9 +11,10 @@ import SocialMedia from './SocialMedia.astro';
 
 	<section class="relative h-[86vh] flex flex-col items-center justify-center overflow-y-hidden ">
 		<div class="absolute top-0 left-0 w-full z-20"></div>
-		<div class="absolute inset-0 bg-grid-slate-100 bg-cover bg-center bg-no-repeat z-0 pointer-events-none" 
+		<div class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 pointer-events-none" 
 		     role="img" 
-		     aria-label="Decorative background pattern"></div>
+		     aria-label="Decorative background pattern"
+		     style={`background-image: url(${heroBg.src})`}></div>
 		
 		<!-- Hero Content -->
 		<header class="text-center z-10 max-w-lg mx-auto">
@@ -93,11 +95,5 @@ import SocialMedia from './SocialMedia.astro';
 		50% { border-color: #111827; }
 	}
 
-  .bg-grid-slate-100 {
-    background-image: url('../assets/hero-bg.png');
-		background-size: cover;
-		background-position: center center;
-		background-repeat: no-repeat;
-  }
 
 </style>
