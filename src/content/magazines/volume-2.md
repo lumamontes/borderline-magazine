@@ -9,11 +9,11 @@ volume: 2
 featured: true
 tags: ["visual arts", "poetry", "prose", "global"]
 seo:
-  title: "Borderline Magazine - Volume 6 | Literary Arts Collection"
-  description: "Experience Volume 6 of Borderline Magazine featuring cutting-edge creative works from worldwide artists."
+  title: "Borderline Magazine - Volume 2 | Literary Arts Collection"
+  description: "Experience Volume 2 of Borderline Magazine featuring cutting-edge creative works from worldwide artists."
   keywords: ["literary magazine", "visual arts", "poetry", "prose", "cutting-edge"]
 ---
 
-# Borderline Magazine - Volume 6
+# Borderline Magazine - Volume 2
 
 Celebrating the diversity and innovation of our creative community.
