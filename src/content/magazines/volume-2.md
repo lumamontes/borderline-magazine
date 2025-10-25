@@ -1,22 +1,19 @@
 ---
-title: "Borderline Magazine"
+title: "Borderline Magazine Volume Two"
 subtitle: "Volume 2"
 description: "A collection of visual arts, poetry and prose from creatives around the globe."
-coverImage: "/src/assets/magazines/2.png"
-publishDate: 2024-02-15
+coverImage: "/src/assets/magazines/volume2/6.png"
+pagesDir: "/src/assets/magazines/volume2/pages"
+publishDate: 2024-06-15
 volume: 2
-featured: false
+featured: true
 tags: ["visual arts", "poetry", "prose", "global"]
 seo:
-  title: "Borderline Magazine - Volume 2 | Literary Arts Collection"
-  description: "Explore Volume 2 of Borderline Magazine featuring visual arts, poetry and prose from creatives worldwide."
-  keywords: ["literary magazine", "visual arts", "poetry", "prose", "global creatives"]
+  title: "Borderline Magazine - Volume 6 | Literary Arts Collection"
+  description: "Experience Volume 6 of Borderline Magazine featuring cutting-edge creative works from worldwide artists."
+  keywords: ["literary magazine", "visual arts", "poetry", "prose", "cutting-edge"]
 ---
 
-# Borderline Magazine - Volume 2
+# Borderline Magazine - Volume 6
 
-A collaborative space reshaping the connections within the litmag community.
-
-## Featured Artists
-
-This volume showcases the diverse talents of our global creative community.
+Celebrating the diversity and innovation of our creative community.

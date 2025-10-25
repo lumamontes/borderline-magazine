@@ -36,14 +36,13 @@ const { previewImages } = Astro.props;
       >
         {previewImages.map((image: any, index: number) => (
           <div class="flex-shrink-0 w-full relative max-h-[400px]">
-            <Image
-              src={image}
+            <img
+              src={image.src || image}
               alt={`Magazine preview ${index + 1}`}
               class="w-full h-full object-contain"
               width={700}
               height={400}
               loading="lazy"
-              format="webp"
             />
           </div>
         ))}

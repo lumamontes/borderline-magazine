@@ -7,9 +7,11 @@ const magazines = defineCollection({
     subtitle: z.string().optional(),
     description: z.string(),
     coverImage: z.string(),
+    pagesDir: z.string().optional(),
     publishDate: z.coerce.date(),
     volume: z.number(),
     featured: z.boolean().default(false),
+    display: z.boolean().default(true),
     tags: z.array(z.string()).default([]),
     seo: z.object({
       title: z.string().optional(),

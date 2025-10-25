@@ -17,8 +17,10 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.546.0",
+    "plaiceholder": "^3.0.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-pageflip": "^2.0.3",
     "sharp": "^0.34.4",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.14"

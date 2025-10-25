@@ -1,18 +1,19 @@
 ---
-title: "Borderline Magazine"
-subtitle: "Volume 7"
-description: "A collection of visual arts, poetry and prose from creatives around the globe."
-coverImage: "/src/assets/magazines/7.png"
-publishDate: 2024-07-15
+title: "The Underline"
+subtitle: "Issue One"
+description: "The underline is the borderline litmag's new mini-magazine of contributor interviews and editorial insights."
+coverImage: "/src/assets/magazines/volume1/cover.png"
+publishDate: 2024-01-15
 volume: 7
 featured: false
-tags: ["visual arts", "poetry", "prose", "global"]
+display: false
+tags: ["literature", "interviews", "editorial", "mini-magazine"]
 seo:
-  title: "Borderline Magazine - Volume 7 | Literary Arts Collection"
-  description: "Latest Volume 7 of Borderline Magazine showcasing contemporary creative works from global artists."
-  keywords: ["literary magazine", "visual arts", "poetry", "prose", "contemporary"]
+  title: "The Underline - Issue One | Borderline Litmag"
+  description: "Read The Underline, Borderline Litmag's mini-magazine featuring contributor interviews and editorial insights. Volume 1 now available."
+  keywords: ["literary magazine", "interviews", "editorial", "borderline litmag", "the underline"]
 ---
 
-# Borderline Magazine - Volume 7
+# Notes
 
-The latest collection from our vibrant creative community.
+Reading so many online pieces  can be overwhelming. We want to give the ones we publish a particular space to be perused and discussed in more depth. In doing so, we also hope to further our mission of amplifying young creative voices and facilitating creative discussions. Interviews with the contributors from a specific volume, starting from Volume V: inspirations, creative practices, experiences with publishing. And behind-the-scenes insights from the borderline's editorial team on how the volume was compiled and designed.

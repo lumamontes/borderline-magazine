@@ -3,29 +3,32 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import Header from "../../components/Header.astro";
 import LayoutHeader from "../../layouts/LayoutHeader.astro";
-import MagazinePreviewCarousel from "../../components/MagazinePreviewCarousel.astro";
-import Preview1 from "../../assets/magazines/volume1/preview1.png";
-import Preview2 from "../../assets/magazines/volume1/preview2.png";
-import Preview3 from "../../assets/magazines/volume1/preview3.png";
+import MagazineFlipbook from "../../components/MagazineFlipbook.tsx";
+import { getMagazineColorPalette } from "../../lib/imageColors.ts";
 
 export async function getStaticPaths() {
   const magazines = await getCollection("magazines");
-  return magazines.map((magazine) => ({
+  return magazines.filter((magazine) => magazine.data.display && magazine.data.featured).map((magazine) => ({
     params: { slug: magazine.slug },
     props: { magazine },
   }));
 }
 
+
 const { magazine } = Astro.props;
 const { Content } = await magazine.render();
 
-// SEO data
+const allMagazineImages = import.meta.glob<{ default: ImageMetadata }>('../../assets/magazines/**/*.{png,jpg,jpeg,gif,webp}', { eager: true });
+const allPageImages = Object.values(allMagazineImages)
+  .filter((img) => img.default.src.includes(magazine.data.pagesDir!))
+  .map((img) => ({ src: img.default.src, alt: `${magazine.data.title} page` }));
+
+const colorPalette = getMagazineColorPalette(magazine);
 const seoTitle = magazine.data.seo?.title || `${magazine.data.title} | Borderline Litmag`;
 const seoDescription = magazine.data.seo?.description || magazine.data.description;
 const baseURL = Astro.site || "https://borderlinemag.netlify.app";
-const canonicalURL = new URL(`/magazine/${magazine.slug}`, baseURL);
+const canonicalURL = `${baseURL}/magazine/${magazine.slug}`;
 
-// Structured data for individual magazine
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "CreativeWork",
@@ -78,7 +81,7 @@ const structuredData = {
   <Header />
   
   <!-- Breadcrumb -->
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8" aria-label="Breadcrumb">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8" aria-label="Breadcrumb">
     <ol class="flex items-center space-x-2 text-sm text-gray-500">
       <li><a href="/" class="hover:text-gray-700">Home</a></li>
       <li>/</li>
@@ -90,27 +93,40 @@ const structuredData = {
 
   <!-- Magazine Header -->
   <section class="relative overflow-hidden">
+    <!-- Blurred background from cover image -->
+    <div 
+      class="absolute inset-0 -z-20"
+      style={`
+        background-image: url('${magazine.data.coverImage}');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: blur(20px) brightness(0.7);
+        transform: scale(1.1);
+      `}
+    ></div>
     <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] -z-10"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
       <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
-        <div class="w-full md:w-1/2 text-left md:text-start">
-          <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight theta-text-dark inknut-antiqua-bold">
+        <!-- //make a blur background for the text content  -->
+        <div class="w-full md:w-1/2 text-left md:text-start bg-white backdrop-blur-md p-6 rounded-md">
+          <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-gray-900 inknut-antiqua-bold">
             {magazine.data.title}
           </h1>
           {magazine.data.subtitle && (
-            <h2 class="text-xl sm:text-2xl md:text-3xl mb-4 text-gray-600">
+            <h2 class="text-xl sm:text-2xl md:text-3xl mb-4 text-neutral-800">
               {magazine.data.subtitle}
             </h2>
           )}
-          <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-none md:max-w-2xl mx-auto md:mx-0 leading-relaxed theta-text-dark px-4 md:px-0">
+          <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-none md:max-w-2xl mx-auto md:mx-0 leading-relaxed text-gray-800 px-4 md:px-0">
             {magazine.data.description}
           </p>
           <div class="flex flex-wrap gap-2 mb-6">
             {magazine.data.tags.map((tag) => (
-              <span class="px-3 py-1 bg-gray-100 text-sm rounded-full">{tag}</span>
+              <span class="px-3 py-1 bg-gray-100 text-neutral-800 text-sm rounded-full border border-gray-200">{tag}</span>
             ))}
           </div>
-          <div class="text-sm text-gray-500">
+          <div class="text-sm text-neutral-800">
             <span>Volume {magazine.data.volume}</span>
             <span class="mx-2">•</span>
             <span>Published {magazine.data.publishDate.toLocaleDateString()}</span>
@@ -134,9 +150,19 @@ const structuredData = {
     </div>
   </section>
 
-  <!-- Magazine Preview Carousel (only for Volume 1) -->
-  {magazine.data.volume === 1 && (
-    <MagazinePreviewCarousel previewImages={[Preview1, Preview2, Preview3]} />
+  <!-- Magazine Flipbook -->
+  {allPageImages.length > 0 && (
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <MagazineFlipbook 
+        pageImages={allPageImages}
+        title={`${magazine.data.title} - Preview`}
+        isPreview={true}
+        magazineSlug={magazine.slug}
+        colorPalette={colorPalette}
+        coverImage={magazine.data.coverImage}
+        client:load
+      />
+    </div>
   )}
 
   <!-- Magazine Content -->

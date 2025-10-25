@@ -3,15 +3,11 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import Header from "../components/Header.astro";
 import LayoutHeader from "../layouts/LayoutHeader.astro";
-import AboutHeaderHero from "../components/AboutHeaderHero.astro";
-import { Marquee } from "@/components/ui/marquee";
-import MeetTheTeam from "@/components/MeetTheTeam.astro";
-import MagazineSearch from "../components/MagazineSearch.astro";
 import MagazineImg from "../assets/magazine.png";
 
 // Get all magazines from content collections
 const allMagazines = await getCollection("magazines");
-const magazines = allMagazines.sort((a, b) => a.data.volume - b.data.volume);
+const magazines = allMagazines.sort((a, b) => a.data.volume - b.data.volume).filter(magazine => magazine.data.display);
 
 // SEO data
 const seoTitle = "Magazine Collection | Borderline Litmag";
@@ -121,12 +117,9 @@ const structuredData = {
     >
       <h3 class="text-2xl font-bold mb-6 inknut-antiqua-bold">Available volumes</h3>
       
-      <!-- Search and Filter Component -->
-      <MagazineSearch magazines={magazines} />
-      
       <div class="grid grid-cols-3 gap-6">
         {magazines.map((magazine) => (
-          magazine.data.volume === 1 ? (
+          magazine.data.display && magazine.data.featured ? (
             <a 
               href={`/magazine/${magazine.slug}`}
               class="block group"

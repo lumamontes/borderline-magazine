@@ -1,18 +1,18 @@
 ---
 title: "Borderline Magazine"
-subtitle: "Volume 3"
+subtitle: "Volume 5"
 description: "A collection of visual arts, poetry and prose from creatives around the globe."
-coverImage: "/src/assets/magazines/3.png"
-publishDate: 2024-03-15
-volume: 3
+coverImage: "/src/assets/magazines/5.png"
+publishDate: 2024-05-15
+volume: 5
 featured: false
 tags: ["visual arts", "poetry", "prose", "global"]
 seo:
-  title: "Borderline Magazine - Volume 3 | Literary Arts Collection"
-  description: "Discover Volume 3 of Borderline Magazine with visual arts, poetry and prose from international creatives."
-  keywords: ["literary magazine", "visual arts", "poetry", "prose", "international"]
+  title: "Borderline Magazine - Volume 5 | Literary Arts Collection"
+  description: "Discover Volume 5 of Borderline Magazine with innovative creative works from global artists."
+  keywords: ["literary magazine", "visual arts", "poetry", "prose", "innovation"]
 ---
 
-# Borderline Magazine - Volume 3
+# Borderline Magazine - Volume 5
 
-Continuing our mission to connect creatives across the globe.
+Pushing boundaries in contemporary literary expression.
