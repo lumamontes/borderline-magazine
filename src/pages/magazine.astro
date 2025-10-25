@@ -9,6 +9,20 @@ import MagazineImg from "../assets/magazine.png";
 const allMagazines = await getCollection("magazines");
 const magazines = allMagazines.sort((a, b) => a.data.volume - b.data.volume).filter(magazine => magazine.data.display);
 
+// Import all magazine cover images
+const allMagazineImages = import.meta.glob<{ default: ImageMetadata }>('../assets/magazines/**/*.{png,jpg,jpeg,gif,webp}', { eager: true });
+
+// Process magazine cover images
+const magazinesWithImages = magazines.map(magazine => {
+  const coverImagePath = magazine.data.coverImage.replace('/src/assets/', '../assets/');
+  const coverImage = allMagazineImages[coverImagePath]?.default;
+  
+  return {
+    ...magazine,
+    coverImage: coverImage || magazine.data.coverImage
+  };
+});
+
 // SEO data
 const seoTitle = "Magazine Collection | Borderline Litmag";
 const seoDescription = "Explore our collection of literary magazines featuring visual arts, poetry, and prose from creatives around the globe. Read past volumes and discover new voices.";
@@ -50,14 +64,14 @@ const structuredData = {
 <meta property="og:url" content={canonicalURL.toString()} />
 <meta property="og:title" content={seoTitle} />
 <meta property="og:description" content={seoDescription} />
-<meta property="og:image" content={new URL("/src/assets/magazine.png", baseURL).toString()} />
+<meta property="og:image" content={new URL(MagazineImg.src, baseURL).toString()} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={canonicalURL.toString()} />
 <meta property="twitter:title" content={seoTitle} />
 <meta property="twitter:description" content={seoDescription} />
-<meta property="twitter:image" content={new URL("/src/assets/magazine.png", baseURL).toString()} />
+<meta property="twitter:image" content={new URL(MagazineImg.src, baseURL).toString()} />
 
 <!-- Structured Data -->
 <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
@@ -118,14 +132,14 @@ const structuredData = {
       <h3 class="text-2xl font-bold mb-6 inknut-antiqua-bold">Available volumes</h3>
       
       <div class="grid grid-cols-3 gap-6">
-        {magazines.map((magazine) => (
+        {magazinesWithImages.map((magazine) => (
           magazine.data.display && magazine.data.featured ? (
             <a 
               href={`/magazine/${magazine.slug}`}
               class="block group"
             >
               <Image
-                src={magazine.data.coverImage}
+                src={magazine.coverImage}
                 alt={magazine.data.title}
                 class="w-full aspect-[3/4] object-cover rounded-sm shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105"
                 width={300}
@@ -137,7 +151,7 @@ const structuredData = {
           ) : (
             <div class="block group">
               <Image
-                src={magazine.data.coverImage}
+                src={magazine.coverImage}
                 alt={magazine.data.title}
                 class="w-full aspect-[3/4] object-cover rounded-sm shadow-lg"
                 width={300}

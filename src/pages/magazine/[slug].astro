@@ -29,6 +29,10 @@ const allPageImages = Object.values(allMagazineImages)
   .filter((img) => img.default.src.includes(magazine.data.pagesDir!))
   .map((img) => ({ src: img.default.src, alt: `${magazine.data.title} page` }));
 
+console.log('Magazine pagesDir:', magazine.data.pagesDir);
+console.log('All magazine images:', Object.keys(allMagazineImages));
+console.log('Filtered page images:', allPageImages);
+
 const colorPalette = getMagazineColorPalette(magazine);
 const seoTitle = magazine.data.seo?.title || `${magazine.data.title} | Borderline Litmag`;
 const seoDescription = magazine.data.seo?.description || magazine.data.description;
