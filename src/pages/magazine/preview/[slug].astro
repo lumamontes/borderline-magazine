@@ -25,9 +25,18 @@ const coverImagePath = magazine.data.coverImage.replace('/src/assets/', '../../.
 const coverImage = allMagazineImages[coverImagePath]?.default;
 
 // Get all page images for this specific magazine
+const pagesDirPath = magazine.data.pagesDir?.replace('/src/assets/', '../../../assets/');
 const pageImages = Object.values(allMagazineImages)
-  .filter((img) => img.default.src.includes(magazine.data.pagesDir!))
+  .filter((img) => {
+    const imgPath = Object.keys(allMagazineImages).find(key => allMagazineImages[key] === img);
+    return imgPath && imgPath.includes(pagesDirPath || 'assets/magazines/');
+  })
   .map((img) => ({ src: img.default.src, alt: `${magazine.data.title} page` }));
+
+console.log('Preview - Magazine pagesDir:', magazine.data.pagesDir);
+console.log('Preview - Converted pagesDirPath:', pagesDirPath);
+console.log('Preview - All magazine image keys:', Object.keys(allMagazineImages));
+console.log('Preview - Filtered page images:', pageImages);
 
 // Get color palette for this magazine
 const colorPalette = getMagazineColorPalette(magazine);
@@ -135,6 +144,7 @@ const structuredData = {
   <!-- Full Magazine Flipbook -->
   {pageImages.length > 0 ? (
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <p class="text-sm text-gray-500 mb-4">Found {pageImages.length} page images</p>
       <MagazineFlipbook 
         pageImages={pageImages}
         title={`${magazine.data.title} - Complete Digital Edition`}

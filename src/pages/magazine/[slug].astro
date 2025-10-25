@@ -25,13 +25,13 @@ const coverImagePath = magazine.data.coverImage.replace('/src/assets/', '../../a
 const coverImage = allMagazineImages[coverImagePath]?.default;
 
 // Get page images
+const pagesDirPath = magazine.data.pagesDir?.replace('/src/assets/', '../../assets/');
 const allPageImages = Object.values(allMagazineImages)
-  .filter((img) => img.default.src.includes(magazine.data.pagesDir))
+  .filter((img) => {
+    const imgPath = Object.keys(allMagazineImages).find(key => allMagazineImages[key] === img);
+    return imgPath && imgPath.includes(pagesDirPath || 'assets/magazines/');
+  })
   .map((img) => ({ src: img.default.src, alt: `${magazine.data.title} page` }));
-
-console.log('Magazine pagesDir:', magazine.data.pagesDir);
-console.log('All magazine images:', Object.keys(allMagazineImages));
-console.log('Filtered page images:', allPageImages);
 
 const colorPalette = getMagazineColorPalette(magazine);
 const seoTitle = magazine.data.seo?.title || `${magazine.data.title} | Borderline Litmag`;
@@ -161,8 +161,9 @@ const structuredData = {
   </section>
 
   <!-- Magazine Flipbook -->
-  {allPageImages.length > 0 && (
+  {allPageImages.length > 0 ? (
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <p class="text-sm text-gray-500 mb-4">Found {allPageImages.length} page images</p>
       <MagazineFlipbook 
         pageImages={allPageImages}
         title={`${magazine.data.title} - Preview`}
@@ -172,6 +173,10 @@ const structuredData = {
         coverImage={coverImage?.src || magazine.data.coverImage}
         client:load
       />
+    </div>
+  ) : (
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <p class="text-center text-gray-500">No page images found for this magazine.</p>
     </div>
   )}
 
