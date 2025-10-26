@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import Header from '../components/Header.astro';
+import LayoutHeader from '../layouts/LayoutHeader.astro';
+import AboutHeaderHero from '../components/AboutHeaderHero.astro';
+import { Marquee } from '@/components/ui/marquee';
+import MeetTheTeam from '@/components/MeetTheTeam.astro';
+import ContactForm from '@/components/ContactForm';
+
+const seoData = {
+	title: "Contact The Borderline Literary Magazine",
+	description: "Learn about The Borderline Literary Magazine's mission to draw rich and collaborative 'borderlines' of connection within the litmag community through inventive publications and projects. Meet our team and discover our story since 2021.",
+	image: "/about.png",
+	keywords: "about borderline literary magazine, literary magazine team, litmag mission, creative writing community, literary publication history, emerging writers support, established writers platform, print digital magazine",
+	type: "website",
+	section: "About"
+};
+---
+
+<LayoutHeader {...seoData}>
+	<Header />
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 md:pt-20 pb-16 sm:pb-20 md:pb-24">
+    <ContactForm client:load />
+  </div>
+
+</LayoutHeader>

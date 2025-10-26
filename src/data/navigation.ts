@@ -23,26 +23,33 @@ export const navigationItems: NavigationItem[] = [
     alt: 'About'
   },
   {
-    id: 'community',
-    label: 'Community',
-    href: '/community',
-    imageSrc: '/src/assets/hero/community.png',
-    alt: 'Community'
-  },
-  {
-    id: 'projects',
-    label: 'Projects',
-    href: '/projects',
-    imageSrc: '/src/assets/hero/projects.png',
-    alt: 'Projects'
-  },
-  {
-    id: 'newsletter',
-    label: 'Newsletter',
-    href: '/newsletter',
-    imageSrc: '/src/assets/hero/newsletter.png',
-    alt: 'Newsletter'
+    id: 'contact',
+    label: 'Contact',
+    href: '/contact',
+    imageSrc: '/src/assets/hero/contact.png',
+    alt: 'Contact'
   }
+  // {
+  //   id: 'community',
+  //   label: 'Community',
+  //   href: '/community',
+  //   imageSrc: '/src/assets/hero/community.png',
+  //   alt: 'Community'
+  // },
+  // {
+  //   id: 'projects',
+  //   label: 'Projects',
+  //   href: '/projects',
+  //   imageSrc: '/src/assets/hero/projects.png',
+  //   alt: 'Projects'
+  // },
+  // {
+  //   id: 'newsletter',
+  //   label: 'Newsletter',
+  //   href: '/newsletter',
+  //   imageSrc: '/src/assets/hero/newsletter.png',
+  //   alt: 'Newsletter'
+  // }
 ];
 
 // Constants for consistent styling
