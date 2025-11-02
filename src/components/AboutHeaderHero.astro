@@ -1,5 +1,4 @@
 ---
-import Button from './Button.astro';
 import { Image } from 'astro:assets';
 import AboutImg from '../assets/about.png';
 export interface Props {
@@ -20,11 +19,8 @@ export interface Props {
             <Image 
               src={AboutImg} 
               alt="The Borderline Literary Magazine team and workspace showcasing our creative community and collaborative environment" 
-              class="w-full h-auto object-cover rounded-sm"
-              width={480}
-              height={270}
+              class="w-full h-auto object-contain rounded-sm"
               loading="eager"
-              format="webp"
               fetchpriority="high"
             />
           </div>
