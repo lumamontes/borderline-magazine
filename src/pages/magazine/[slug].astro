@@ -128,19 +128,34 @@ const structuredData = {
               {magazine.data.subtitle}
             </h2>
           )}
+
+          
           <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-none md:max-w-2xl mx-auto md:mx-0 leading-relaxed text-gray-800 px-4 md:px-0">
             {magazine.data.description}
           </p>
+          <div class="gap-4 mb-6">
+            <a 
+              href={`/magazine/preview/${magazine.slug}`}
+              class="inline-flex items-center px-6 py-3  text-black font-semibold rounded-lg transition-colors duration-200 border border-black shadow-none hover:bg-black hover:text-white "
+            >
+              Explore Full Magazine
+            </a>
+          </div>
+
           <div class="flex flex-wrap gap-2 mb-6">
             {magazine.data.tags.map((tag) => (
               <span class="px-3 py-1 bg-gray-100 text-neutral-800 text-sm rounded-full border border-gray-200">{tag}</span>
             ))}
           </div>
+
+          
           <div class="text-sm text-neutral-800">
             <span>Volume {magazine.data.volume}</span>
             <span class="mx-2">•</span>
             <span>Published {magazine.data.publishDate.toLocaleDateString()}</span>
           </div>
+
+         
         </div>
         <div class="w-full md:w-1/2 flex justify-center md:justify-end items-center flex-col">
           <div class="relative">
@@ -159,25 +174,6 @@ const structuredData = {
       </div>
     </div>
   </section>
-
-  <!-- Magazine Flipbook -->
-  {allPageImages.length > 0 ? (
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <MagazineFlipbook 
-        pageImages={allPageImages}
-        title={`${magazine.data.title} - Preview`}
-        isPreview={true}
-        magazineSlug={magazine.slug}
-        colorPalette={colorPalette}
-        coverImage={coverImage?.src || magazine.data.coverImage}
-        client:load
-      />
-    </div>
-  ) : (
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <p class="text-center text-gray-500">No page images found for this magazine.</p>
-    </div>
-  )}
 
   <!-- Magazine Content -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
