@@ -93,13 +93,13 @@ const structuredData = {
         >
           <div class="w-full md:w-1/2 text-left md:text-start">
             <h1
-              class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight theta-text-dark inknut-antiqua-bold"
+              class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight theta-text-dark inknut-antiqua-bold"
             >
               Magazine <br />
             </h1>
 
             <p
-              class="text-lg sm:text-xl md:text-2xl mb-8 max-w-none md:max-w-2xl mx-auto md:mx-0 leading-relaxed theta-text-dark px-4 md:px-0"
+              class="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 max-w-none md:max-w-2xl mx-auto md:mx-0 leading-relaxed theta-text-dark px-4 md:px-0"
             >
               A collaborative space reshaping the connections within the litmag
               community. Read our past volumes, featuring visual arts, poetry
@@ -128,11 +128,11 @@ const structuredData = {
     </div>
   </section>
   <section
-      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 md:pt-20 pb-16 sm:pb-20 md:pb-24"
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 md:pt-16 lg:pt-20 pb-16 sm:pb-20 md:pb-24"
     >
-      <h3 class="text-2xl font-bold mb-6 inknut-antiqua-bold">Available volumes</h3>
+      <h3 class="text-xl sm:text-2xl font-bold mb-4 sm:mb-6 inknut-antiqua-bold px-4 sm:px-0">Available volumes</h3>
       
-      <div class="grid grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 px-4 sm:px-0">
         {magazinesWithImages.map((magazine) => (
           magazine.data.display && magazine.data.featured ? (
             <a 

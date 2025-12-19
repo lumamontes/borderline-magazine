@@ -30,12 +30,12 @@ const team = [
 <section class="relative overflow-hidden">
   <div class="absolute inset-0 bg-cover bg-center bg-no-repeat [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] -z-10" 
        style={`background-image: url(${MeetImg.src})`}></div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32  md:pt-20 pb-16 sm:pb-20 md:pb-24 h-[50vh]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 md:pt-20 pb-12 sm:pb-16 md:pb-20 lg:pb-24 min-h-[40vh] sm:min-h-[50vh]">
       <div class="text-left">
         <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
           <div class="w-full md:w-1/2 text-left md:text-start">
               <div class="relative">
-                <h1 class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight text-white">
                   Meet<br>
                   The Team
                 </h1>
@@ -48,13 +48,13 @@ const team = [
 
 
 <!-- //team members section -->
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32  md:pt-20 pb-16 sm:pb-20 md:pb-24">
-<section class="grid grid-cols-1 md:grid-cols-3">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 md:pt-20 lg:pt-24 pb-12 sm:pb-16 md:pb-20 lg:pb-24">
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
   {team.map((member) => (
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Image src={member.img} alt={member.name} class="rounded-sm mb-4" />
-      <h2 class="text-2xl font-bold mb-4 theta-text-dark">{member.name}</h2>
-      <p class="text-lg text-gray-700 leading-relaxed">{member.bio}</p>
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
+      <Image src={member.img} alt={member.name} class="rounded-sm mb-3 sm:mb-4 w-full h-auto" />
+      <h2 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 theta-text-dark">{member.name}</h2>
+      <p class="text-base sm:text-lg text-gray-700 leading-relaxed">{member.bio}</p>
     </div>
   ))}
 </section>

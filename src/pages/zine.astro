@@ -59,15 +59,15 @@ const structuredData = {
         >
           <div class="w-full md:w-1/2 text-left md:text-start">
             <h1
-              class="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight theta-text-dark inknut-antiqua-bold"
+              class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 leading-tight theta-text-dark inknut-antiqua-bold"
             >
               Zine <br />
             </h1>
 
             <p
-              class="text-lg sm:text-xl md:text-2xl mb-8 max-w-none md:max-w-2xl mx-auto md:mx-0 leading-relaxed theta-text-dark px-4 md:px-0"
+              class="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 sm:mb-8 max-w-none md:max-w-2xl mx-auto md:mx-0 leading-relaxed theta-text-dark px-4 md:px-0"
             >
-              Reflect on your creative year and record your next aspirations with this free paper zine from the borderline litmag! Download, print, fold, and get creative.
+              Reflect on your creative year and record your next aspirations with this free paper zine from the borderline litmag! Download, print, fold, and get creative. Share your zine and explore others on Instagram and Twitter with the hashtag <span class="hashtag-hover">#tblzines</span>.
             </p>
 
             <!-- Download Buttons -->
@@ -120,6 +120,31 @@ const structuredData = {
 <style>
   .bg-grid-slate-100 {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.02)'%3e%3cpath d='m0 .5 32 0M.5 0l0 32'/%3e%3c/svg%3e");
+  }
+
+  .hashtag-hover {
+    display: inline-block;
+    color: #82BD99;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .hashtag-hover:hover {
+    color: #BD501C;
+    transform: scale(1.15) rotate(2deg);
+    text-shadow: 0 0 8px rgba(189, 80, 28, 0.3);
+    animation: hashtag-bounce 0.5s ease;
+  }
+
+  @keyframes hashtag-bounce {
+    0%, 100% {
+      transform: scale(1.15) rotate(2deg);
+    }
+    50% {
+      transform: scale(1.25) rotate(-2deg);
+    }
   }
 </style>
 
