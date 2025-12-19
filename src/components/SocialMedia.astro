@@ -4,17 +4,17 @@ import EmailIcon from '../assets/mail.png';
 import TwitterIcon from '../assets/twitter.png';
 import { Image } from 'astro:assets';
 ---
-<div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex gap-6">
-  <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer" 
-      class="text-green-700 hover:text-green-800 transition-colors w-12 h-12 flex items-center justify-center">
+<div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex gap-4 sm:gap-6">
+  <a href="https://www.instagram.com/_theborderline_/" target="_blank" rel="noopener noreferrer" 
+      class="text-green-700 hover:text-green-800 transition-colors w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
     <Image src={InstagramIcon} alt="Instagram" width={100}/>
   </a>
-  <a href="mailto:your-email@example.com" 
-      class="text-green-700 hover:text-green-800 transition-colors w-12 h-12 flex items-center justify-center">
+  <a href="mailto:theborderline21@gmail.com" 
+      class="text-green-700 hover:text-green-800 transition-colors w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
     <Image src={EmailIcon} alt="Email" width={100}/>
   </a>
-  <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer"
-      class="text-green-700 hover:text-green-800 transition-colors w-12 h-12 flex items-center justify-center">
-    <Image src={TwitterIcon} alt="Twitter"width={100} />
+  <a href="https://x.com/_theborderline_" target="_blank" rel="noopener noreferrer"
+      class="text-green-700 hover:text-green-800 transition-colors w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center">
+    <Image src={TwitterIcon} alt="Twitter" width={100} />
   </a>
 </div>	
