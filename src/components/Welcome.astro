@@ -3,22 +3,19 @@
 	import Header from './Header.astro';
 	import SocialMedia from './SocialMedia.astro';
 	import heroBg from '../assets/hero-bg.png';
+	import HeroImg from '../assets/hero.png';
+import { Image } from 'astro:assets';
 ---
 
 <main class="min-h-screen w-full bg-white relative overflow-hidden font-sans">
 	<!-- Main Content -->
 	<Header variant={'transparent'} showLogo={true} />
 
-	<section class="relative min-h-[70vh] sm:min-h-[80vh] md:h-[86vh] flex flex-col items-center justify-center overflow-y-hidden px-4">
-		<div class="absolute top-0 left-0 w-full z-20"></div>
-		<div class="absolute inset-0 bg-cover bg-center bg-no-repeat z-0 pointer-events-none" 
-		     role="img" 
-		     aria-label="Decorative background pattern"
-		     style={`background-image: url(${heroBg.src})`}></div>
-		
+	<section class=" flex flex-col items-center justify-center min-h-[70vh] ">
 		<!-- Hero Content -->
-		<header class="text-center z-10 max-w-lg mx-auto px-4">
-			<h1 class="p-0 text-4xl sm:text-5xl md:text-6xl font-bold mb-1 lowercase inknut-antiqua-bold typewriter bg-[#FCEDD2]">
+		<header class="text-center max-w-[500px] mx-auto px-4">
+			<Image src={HeroImg} alt="The Borderline Literary Magazine" class="organicShake hover-shake w-full h-auto object-cover rounded-sm " />
+			<h1 class="p-0 text-4xl sm:text-5xl font-bold mb-1 lowercase inknut-antiqua-bold ">
 				the borderline
 			</h1>
 			<h2 class="text-xl sm:text-2xl md:text-4xl font-light mb-4 lowercase bg-[#FCEDD2]">
@@ -42,39 +39,40 @@
 		font-family: 'Kalam', cursive;
 	}
 
-	/* Organic Shake Animation */
-	.hover-shake {
-		transition: transform 0.3s ease;
-		animation: gentleWiggle 3s ease-in-out infinite;
-	}
+/* Organic Shake Animation */
+.hover-shake {
+	transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+	animation: gentleFloat 6s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+	will-change: transform;
+}
 
-	.hover-shake:hover {
-		animation: organicShake 0.6s ease-in-out;
-	}
+.hover-shake:hover {
+	animation: elegantHover 3s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+	transform: scale(1.05);
+}
 
-	/* Gentle continuous wiggle like wind */
-	@keyframes gentleWiggle {
-		0% { transform: translate(0, 0) rotate(0deg); }
-		20% { transform: translate(0.8px, 0.4px) rotate(0.25deg); }
-		40% { transform: translate(-0.6px, 0.5px) rotate(-0.2deg); }
-		60% { transform: translate(0.4px, -0.3px) rotate(0.15deg); }
-		80% { transform: translate(-0.3px, 0.2px) rotate(-0.1deg); }
-		100% { transform: translate(0, 0) rotate(0deg); }
+/* Subtle floating motion - barely noticeable but adds life */
+@keyframes gentleFloat {
+	0%, 100% { 
+		transform: translateY(0px) rotate(0deg); 
 	}
+	33% { 
+		transform: translateY(-3px) rotate(0.5deg); 
+	}
+	66% { 
+		transform: translateY(-1px) rotate(-0.5deg); 
+	}
+}
 
-	@keyframes organicShake {
-		0% { transform: translate(0, 0) rotate(0deg); }
-		10% { transform: translate(-1px, -1px) rotate(-0.5deg); }
-		20% { transform: translate(1px, -1px) rotate(0.5deg); }
-		30% { transform: translate(-1px, 1px) rotate(-0.3deg); }
-		40% { transform: translate(1px, 1px) rotate(0.3deg); }
-		50% { transform: translate(-0.5px, -0.5px) rotate(-0.2deg); }
-		60% { transform: translate(0.5px, -0.5px) rotate(0.2deg); }
-		70% { transform: translate(-0.5px, 0.5px) rotate(-0.1deg); }
-		80% { transform: translate(0.5px, 0.5px) rotate(0.1deg); }
-		90% { transform: translate(-0.2px, -0.2px) rotate(-0.05deg); }
-		100% { transform: translate(0, 0) rotate(0deg); }
+/* Clean hover state with subtle movement */
+@keyframes elegantHover {
+	0%, 100% { 
+		transform: scale(1.05) translateY(0px) rotate(0deg); 
 	}
+	50% { 
+		transform: scale(1.05) translateY(-2px) rotate(0.3deg); 
+	}
+}
 
 	/* Typewriter Animation */
 	.typewriter {
