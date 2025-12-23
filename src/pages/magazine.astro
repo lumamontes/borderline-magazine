@@ -138,6 +138,10 @@ const structuredData = {
             <a 
               href={`/magazine/${magazine.slug}`}
               class="block group"
+              data-ga-event="magazine_open"
+              data-ga-category="magazine"
+              data-ga-label={magazine.data.title}
+              data-ga-location="magazine_grid"
             >
               <Image
                 src={magazine.coverImage}

@@ -1,0 +1,64 @@
+---
+type Props = { measurementId?: string };
+const props = Astro.props as Props;
+const measurementId = props.measurementId || import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+---
+{measurementId && (
+  <>
+    <script
+      type="text/partytown"
+      src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+    ></script>
+    <script
+      type="text/partytown"
+      data-ga-measurement-id={measurementId}
+      id="ga-init"
+    >
+      const measurementId = document
+        .getElementById('ga-init')
+        ?.getAttribute('data-ga-measurement-id');
+      if (!measurementId) return;
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', measurementId, { anonymize_ip: true });
+    </script>
+    <script is:inline>
+      {`
+        (function() {
+          const sendGaEvent = (action, params) => {
+            if (!window.gtag || !action) return;
+            window.gtag('event', action, params);
+          };
+
+          const buildParams = (dataset) => {
+            const { gaCategory, gaLabel, gaValue, gaLocation } = dataset;
+            const params = {
+              event_category: gaCategory || 'interaction',
+              event_label: gaLabel,
+              value: gaValue ? Number(gaValue) : undefined,
+              location: gaLocation
+            };
+            return Object.fromEntries(
+              Object.entries(params).filter(([, value]) => value !== undefined && value !== '')
+            );
+          };
+
+          document.addEventListener(
+            'click',
+            (event) => {
+              const target = event.target instanceof Element ? event.target.closest('[data-ga-event]') : null;
+              if (!target) return;
+
+              const action = target.dataset.gaEvent;
+              if (!action) return;
+
+              sendGaEvent(action, buildParams(target.dataset));
+            },
+            { passive: true }
+          );
+        })();
+      `}
+    </script>
+  </>
+)}

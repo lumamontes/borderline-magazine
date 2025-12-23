@@ -137,6 +137,10 @@ const structuredData = {
             <a 
               href={`/magazine/preview/${magazine.slug}`}
               class="inline-flex items-center px-6 py-3  text-black font-semibold rounded-lg transition-colors duration-200 border border-black shadow-none hover:bg-black hover:text-white "
+              data-ga-event="magazine_preview"
+              data-ga-category="magazine"
+              data-ga-label={magazine.data.title}
+              data-ga-location="magazine_detail"
             >
               Explore Full Magazine
             </a>
