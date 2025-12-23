@@ -6,6 +6,8 @@ import react from "@astrojs/react";
 
 import netlify from "@astrojs/netlify";
 
+import partytown from "@astrojs/partytown";
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://borderlinemag.netlify.app',
@@ -14,6 +16,14 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
 
-  integrations: [react()],
+  integrations: [react(), partytown(
+    {
+      config: {
+        forward: [
+          'dataLayer.push'
+        ]
+      }
+    }
+  )],
   adapter: netlify(),
 });
