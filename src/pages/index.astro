@@ -1,5 +1,11 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Header from '../components/Header.astro';
+import ReadNow from '../components/ReadNow.astro';
+import SocialMedia from '../components/SocialMedia.astro';
+import VolumeCover1 from '../assets/magazines/volume1/cover.png';
+import VolumeCover4 from '../assets/magazines/volume4/pages/Volume IV FINAL - January 2023-01.png';
+import VolumeCover5 from '../assets/magazines/volume5/pages/Volume V FINAL - October 2023-01.png';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 
 const seoData = {
@@ -56,8 +62,282 @@ const homepageStructuredData = {
 ---
 
 <Layout {...seoData}>
-	<Welcome />
+	<main >
+		<!-- Header -->
+		<Header variant={'transparent'} showLogo={true} />
+
+		<!-- Hero Section: Editorial Layout -->
+		<section class="relative  flex items-center bg-gradient-to-br from-[#F9F6F1] via-[#FEFEFE] to-[#F5F2ED] pt-16 sm:pt-18 md:pt-20">
+			<!-- Subtle paper texture overlay -->
+			<div class="absolute inset-0 opacity-[0.03] bg-paper-texture pointer-events-none"></div>
+			
+			<div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20">
+				<div class="grid grid-cols-1 lg:grid-cols-12 items-start gap-8 lg:gap-12">
+					
+					<!-- Left Column: Editorial Content -->
+					<div class="lg:col-span-6 flex flex-col justify-center h-[500px] lg:h-[600px] space-y-8 sm:space-y-10">
+						<!-- Masthead -->
+						<header class="space-y-4 sm:space-y-5">
+							<div class="flex items-baseline gap-3">
+								<h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light lowercase tracking-tight text-[#1A1A1A] leading-[0.85] inknut-antiqua-light">
+									the <strong>borderline</strong>
+								</h1>
+							</div>
+							<div class="flex items-center gap-4 mt-3">
+								<div class="h-[1px] w-12 bg-[#D4AF37]"></div>
+								<h2 class="text-lg sm:text-xl md:text-2xl font-light lowercase text-[#444] tracking-wide letter-spacing-wide">
+									literary magazine
+								</h2>
+								<div class="h-[1px] flex-1 bg-[#E5E5E5]"></div>
+							</div>
+						</header>
+						
+						<!-- Editorial CTAs -->
+						<div class="flex flex-col sm:flex-row gap-5 sm:gap-6">
+							<a 
+								href="/magazine" 
+								class="group inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-[#1A1A1A] text-[#FEFEFE] text-base sm:text-lg font-medium tracking-wide uppercase letter-spacing-[0.1em] border border-[#1A1A1A] hover:bg-[#2A2A2A] transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#FEFEFE]"
+							>
+								<span class="group-hover:tracking-[0.15em] transition-all duration-300">Current Issue</span>
+							</a>
+							
+							<a 
+								href="/contact" 
+								class="group inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-transparent text-[#1A1A1A] text-base sm:text-lg font-medium tracking-wide uppercase letter-spacing-[0.1em] border border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#FEFEFE] transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#FEFEFE]"
+							>
+								<span class="group-hover:tracking-[0.15em] transition-all duration-300">Submissions</span>
+							</a>
+						</div>
+						
+						<!-- Social Media -->
+						<div class="pt-6 border-t border-[#E5E5E5]">
+							<SocialMedia />
+						</div>
+					</div>
+
+					<!-- Right Column: Asymmetric Editorial Spread -->
+					<div class="lg:col-span-6 relative order-first lg:order-last">
+						<div class="editorial-spread relative h-[500px] lg:h-[600px]">
+							
+							<!-- Primary Volume Cover - Large -->
+							<div class="absolute top-0 right-0 w-[280px] lg:w-[320px] transform rotate-[2deg] shadow-[0_20px_60px_rgba(26,26,26,0.15)] hover:shadow-[0_30px_80px_rgba(26,26,26,0.2)] transition-all duration-700 ease-out hover:rotate-[1deg] hover:scale-[1.02] z-30">
+								<Image 
+									src={VolumeCover5} 
+									alt="The Borderline Literary Magazine - Volume V Cover" 
+									class="w-full h-auto object-cover magazine-primary" 
+									loading="eager"
+								/>
+							</div>
+							
+							<!-- Secondary Volume Cover - Medium -->
+							<div class="absolute top-[120px] left-[20px] lg:left-[40px] w-[200px] lg:w-[240px] transform rotate-[-3deg] shadow-[0_15px_45px_rgba(26,26,26,0.12)] hover:shadow-[0_25px_60px_rgba(26,26,26,0.18)] transition-all duration-700 ease-out hover:rotate-[-2deg] hover:scale-[1.02] z-20">
+								<Image 
+									src={VolumeCover4} 
+									alt="The Borderline Literary Magazine - Volume IV Cover" 
+									class="w-full h-auto object-cover magazine-secondary" 
+									loading="eager"
+								/>
+							</div>
+							
+							<!-- Tertiary Volume Cover - Small -->
+							<div class="absolute bottom-[40px] right-[60px] lg:right-[80px] w-[160px] lg:w-[180px] transform rotate-[4deg] shadow-[0_12px_35px_rgba(26,26,26,0.1)] hover:shadow-[0_18px_50px_rgba(26,26,26,0.15)] transition-all duration-700 ease-out hover:rotate-[3deg] hover:scale-[1.02] z-10">
+								<Image 
+									src={VolumeCover1} 
+									alt="The Borderline Literary Magazine - Volume I Cover" 
+									class="w-full h-auto object-cover magazine-tertiary" 
+									loading="eager"
+								/>
+							</div>
+							
+							<!-- Editorial Volume Labels -->
+							<div class="hidden sm:block absolute top-[-20px] left-[60px] text-xs uppercase tracking-[0.2em] text-[#666] font-medium z-40">
+								Our Volumes
+							</div>
+							<div class="hidden sm:block absolute bottom-[-20px] right-[140px] text-xs uppercase tracking-[0.2em] text-[#666] font-medium z-40">
+								Since 2021
+							</div>
+							
+							<!-- Ambient background elements -->
+							<div class="absolute top-[80px] left-[0px] w-24 h-24 bg-[#D4AF37] rounded-full opacity-[0.04] blur-2xl -z-10"></div>
+							<div class="absolute bottom-[100px] right-[20px] w-32 h-32 bg-[#F9F6F1] rounded-full opacity-30 blur-xl -z-10"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		
+		<!-- Magazine Preview Section -->
+		<ReadNow />
+	</main>
 	
 	<!-- Additional structured data for homepage -->
 	<script type="application/ld+json" set:html={JSON.stringify(homepageStructuredData)}></script>
 </Layout>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700&display=swap');
+	
+	/* Editorial Typography */
+	.inknut-antiqua-light { font-family: 'Inknut Antiqua', serif; font-weight: 300; }
+	.inknut-antiqua-regular { font-family: 'Inknut Antiqua', serif; font-weight: 400; }
+	.inknut-antiqua-bold { font-family: 'Inknut Antiqua', serif; font-weight: 700; }
+	
+	/* Letter spacing utilities */
+	.letter-spacing-wide { letter-spacing: 0.05em; }
+	.letter-spacing-\[0\.1em\] { letter-spacing: 0.1em; }
+	.letter-spacing-\[0\.15em\] { letter-spacing: 0.15em; }
+	.letter-spacing-\[0\.2em\] { letter-spacing: 0.2em; }
+
+	/* Paper texture effect */
+	.bg-paper-texture {
+		background-image: 
+			radial-gradient(circle at 1px 1px, rgba(26,26,26,0.1) 1px, transparent 0);
+		background-size: 20px 20px;
+	}
+
+	/* Editorial Spread Container */
+	.editorial-spread {
+		transform-style: preserve-3d;
+		perspective: 1000px;
+	}
+
+	/* Magazine animations for different sizes */
+	.magazine-primary {
+		transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+		animation: editorialFloat1 12s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+		will-change: transform;
+	}
+
+	.magazine-secondary {
+		transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+		animation: editorialFloat2 14s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite 2s;
+		will-change: transform;
+	}
+
+	.magazine-tertiary {
+		transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+		animation: editorialFloat3 16s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite 4s;
+		will-change: transform;
+	}
+
+	/* Sophisticated floating animations with different patterns */
+	@keyframes editorialFloat1 {
+		0%, 100% { 
+			transform: translateY(0px) rotate(0deg) scale(1); 
+		}
+		25% { 
+			transform: translateY(-3px) rotate(0.2deg) scale(1.005); 
+		}
+		50% { 
+			transform: translateY(-1px) rotate(-0.1deg) scale(1.002); 
+		}
+		75% { 
+			transform: translateY(-2px) rotate(0.15deg) scale(1.003); 
+		}
+	}
+
+	@keyframes editorialFloat2 {
+		0%, 100% { 
+			transform: translateY(0px) rotate(0deg) scale(1); 
+		}
+		30% { 
+			transform: translateY(-2px) rotate(-0.15deg) scale(1.003); 
+		}
+		60% { 
+			transform: translateY(-4px) rotate(0.1deg) scale(1.004); 
+		}
+		80% { 
+			transform: translateY(-1px) rotate(-0.05deg) scale(1.001); 
+		}
+	}
+
+	@keyframes editorialFloat3 {
+		0%, 100% { 
+			transform: translateY(0px) rotate(0deg) scale(1); 
+		}
+		20% { 
+			transform: translateY(-1px) rotate(0.1deg) scale(1.002); 
+		}
+		45% { 
+			transform: translateY(-3px) rotate(-0.08deg) scale(1.003); 
+		}
+		70% { 
+			transform: translateY(-2px) rotate(0.12deg) scale(1.001); 
+		}
+	}
+
+	/* Progressive enhancement for editorial spread */
+	@media (prefers-reduced-motion: no-preference) {
+		.editorial-spread {
+			animation: editorialSpreadFadeIn 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) ease-out;
+		}
+		
+		.editorial-spread > div:nth-child(1) {
+			animation-delay: 0.2s;
+		}
+		
+		.editorial-spread > div:nth-child(2) {
+			animation-delay: 0.4s;
+		}
+		
+		.editorial-spread > div:nth-child(3) {
+			animation-delay: 0.6s;
+		}
+	}
+
+	@keyframes editorialSpreadFadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(30px) scale(0.9);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
+	}
+
+	/* Accessibility: Honor reduced motion preferences */
+	@media (prefers-reduced-motion: reduce) {
+		.magazine-float {
+			animation: none !important;
+		}
+		
+		.magazine-preview {
+			animation: none !important;
+		}
+		
+		.magazine-preview:hover .magazine-float {
+			animation: none !important;
+			transform: none !important;
+		}
+	}
+
+	/* Enhanced focus states for accessibility */
+	a:focus-visible {
+		outline: 2px solid #D4AF37 !important;
+		outline-offset: 2px !important;
+		border-radius: 2px !important;
+	}
+
+	/* Subtle text selection styling */
+	::selection {
+		background-color: #D4AF37;
+		color: #1A1A1A;
+	}
+
+	::-moz-selection {
+		background-color: #D4AF37;
+		color: #1A1A1A;
+	}
+
+	/* Print styles for editorial content */
+	@media print {
+		.magazine-preview,
+		.magazine-float {
+			animation: none !important;
+			transform: none !important;
+		}
+	}
+</style>
