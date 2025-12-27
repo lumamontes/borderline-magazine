@@ -104,17 +104,6 @@ const structuredData = {
   <!-- Magazine Header -->
   <section class="relative overflow-hidden">
     <!-- Blurred background from cover image -->
-    <div 
-      class="absolute inset-0 -z-20"
-      style={`
-        background-image: url('${coverImage?.src || magazine.data.coverImage}');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        filter: blur(20px) brightness(0.7);
-        transform: scale(1.1);
-      `}
-    ></div>
     <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] -z-10"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16">
       <div class="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
@@ -128,22 +117,20 @@ const structuredData = {
               {magazine.data.subtitle}
             </h2>
           )}
-
-          
           <p class="text-lg sm:text-xl md:text-2xl mb-8 max-w-none md:max-w-2xl mx-auto md:mx-0 leading-relaxed text-gray-800 px-4 md:px-0">
             {magazine.data.description}
           </p>
           <div class="gap-4 mb-6">
             <a 
               href={`/magazine/preview/${magazine.slug}`}
-              class="inline-flex items-center px-6 py-3  text-black font-semibold rounded-lg transition-colors duration-200 border border-black shadow-none hover:bg-black hover:text-white "
+              class="bg-neutral-800 text-white px-6 py-3 rounded-md text-lg hover:bg-neutral-500 transition-colors duration-200"
               data-ga-event="magazine_preview"
               data-ga-category="magazine"
               data-ga-label={magazine.data.title}
               data-ga-location="magazine_detail"
             >
-              Explore Full Magazine
-            </a>
+              Explore Full Magazine 
+            </a> 
           </div>
 
           <div class="flex flex-wrap gap-2 mb-6">
@@ -166,9 +153,7 @@ const structuredData = {
             <Image
               src={coverImage || magazine.data.coverImage}
               alt={magazine.data.title}
-              class="w-full h-auto object-cover"
-              width={480}
-              height={270}
+              class="w-full h-auto object-cover max-w-md"
               loading="eager"
               format="webp"
               fetchpriority="high"
@@ -179,11 +164,12 @@ const structuredData = {
     </div>
   </section>
 
-  <!-- Magazine Content -->
+  <!-- 
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16">
     <div class="prose prose-lg max-w-none">
       <Content />
     </div>
   </section>
+  Magazine Content -->
 </LayoutHeader>
 
