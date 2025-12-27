@@ -8,6 +8,7 @@ import MeetTheTeam from '@/components/MeetTheTeam.astro';
 import { MeetTheTeamSection } from '@/components/about/MeetTheTeamSection';
 import ContactForm from '@/components/ContactForm';
 import Timeline from '@/components/Timeline.astro';
+import Note from '@/components/about/Note.astro';
 
 const seoData = {
 	title: "About The Borderline Literary Magazine - Our Mission & Team",
@@ -49,9 +50,8 @@ const aboutStructuredData = {
 	<Hero  />
 	<Mission  />
 	<Timeline client:load/>
+	<Note  />
 	<MeetTheTeamSection client:load />
-	<!-- <MeetTheTeamSection client:load /> -->
-	<!-- Additional structured data for about page -->
 	<script type="application/ld+json" set:html={JSON.stringify(aboutStructuredData)}></script>
 </LayoutHeader>
 

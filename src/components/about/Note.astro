@@ -1,0 +1,202 @@
+---
+import { Image } from 'astro:assets';
+import NoteImg from '../../assets/about/note.svg';
+---
+
+<section class="editorial-note">
+	<div class="editorial-note__container">
+		<div class="editorial-note__rule editorial-note__rule--top"></div>
+		<div class="editorial-note__grid">
+			<div class="editorial-note__label-column">
+				<span class="editorial-note__label">TEAM NOTE</span>
+			</div>
+			<div class="editorial-note__text-column">
+				<p class="editorial-note__text">
+					Beyond our main litmag volumes, we hope you will find thought-provoking surprises and more avenues to participate in our wider range of activities, including new litmag community-centred projects and publications.
+				</p>
+			</div>
+		</div>
+		<div class="editorial-note__rule editorial-note__rule--bottom"></div>
+	</div>
+</section>
+
+<style>
+	.editorial-note {
+		background-color: #FAF9F6;
+	}
+
+	.editorial-note__container {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 0 clamp(1.5rem, 5vw, 4rem);
+	}
+
+	.editorial-note__rule {
+		height: 0.5px;
+		background-color: #2a2a2a;
+		opacity: 0.2;
+		margin: 0 auto;
+	}
+
+	.editorial-note__rule--top {
+		width: 60%;
+		max-width: 600px;
+		margin-bottom: 4rem;
+	}
+
+	.editorial-note__rule--bottom {
+		width: 40%;
+		max-width: 400px;
+		margin-top: 4rem;
+	}
+
+	.editorial-note__grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 2rem;
+		align-items: start;
+	}
+
+	.editorial-note__label-column {
+		display: none;
+	}
+
+	.editorial-note__label {
+		font-family: "League Spartan", sans-serif;
+		font-size: 0.625rem;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		color: #2a2a2a;
+		opacity: 0.5;
+		font-weight: 500;
+		writing-mode: vertical-rl;
+		text-orientation: mixed;
+		transform: rotate(180deg);
+	}
+
+	.editorial-note__text-column {
+		max-width: 65ch;
+		margin: 0 auto;
+	}
+
+	.editorial-note__text {
+		font-family: "Playfair Display", serif;
+		font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+		line-height: 1.85;
+		color: #1a1a1a;
+		font-weight: 400;
+		margin: 0 0 3rem 0;
+		text-align: left;
+		hyphens: auto;
+		orphans: 3;
+		widows: 3;
+	}
+
+	.editorial-note__text::first-letter {
+		font-size: 1.5em;
+		line-height: 0.8;
+		margin-right: 0.1em;
+		float: left;
+	}
+
+	.editorial-note__ornament {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		margin-top: 2rem;
+		opacity: 0.4;
+	}
+
+	.editorial-note__note-image {
+		width: 60px;
+		height: auto;
+		max-width: 80px;
+	}
+
+	/* Desktop: Asymmetric grid layout */
+	@media (min-width: 1024px) {
+		.editorial-note {
+			padding: 4rem 0;
+		}
+
+		.editorial-note__grid {
+			grid-template-columns: 120px 1fr;
+			gap: 4rem;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+
+		.editorial-note__label-column {
+			display: flex;
+			align-items: flex-start;
+			justify-content: flex-start;
+			padding-top: 0.5rem;
+		}
+
+		.editorial-note__label {
+			writing-mode: horizontal-tb;
+			transform: none;
+		}
+
+		.editorial-note__text-column {
+			max-width: 65ch;
+			margin: 0;
+		}
+
+		.editorial-note__text {
+			font-size: clamp(1.25rem, 2vw, 1.75rem);
+			line-height: 1.9;
+		}
+
+		.editorial-note__rule--top {
+			width: 50%;
+			max-width: 700px;
+			margin-bottom: 5rem;
+		}
+
+		.editorial-note__rule--bottom {
+			width: 35%;
+			max-width: 450px;
+			margin-top: 5rem;
+		}
+	}
+
+	/* Ultra-wide screens */
+	@media (min-width: 1600px) {
+		.editorial-note__grid {
+			grid-template-columns: 150px 1fr;
+			gap: 5rem;
+			max-width: 1400px;
+		}
+
+		.editorial-note__text {
+			font-size: 1.875rem;
+			line-height: 2;
+		}
+	}
+
+	/* Mobile adjustments */
+	@media (max-width: 768px) {
+		.editorial-note {
+			padding: 4rem 0;
+			margin: 4rem 0;
+		}
+
+		.editorial-note__rule--top {
+			margin-bottom: 3rem;
+		}
+
+		.editorial-note__rule--bottom {
+			margin-top: 3rem;
+		}
+
+		.editorial-note__text {
+			font-size: 1.125rem;
+			line-height: 1.75;
+		}
+
+		.editorial-note__note-image {
+			width: 50px;
+		}
+	}
+</style>

@@ -8,19 +8,16 @@ const timelineItems = [
 		year: 2021,
 		title: 'Our Beginning',
 		content: 'Since 2021, the borderline literary magazine has been active as a youth literary magazine focused on uplifting youth creative voices through publications, interviews, and occasional standalone projects.',
-		// content: 'Launched as a platform for emerging youth voices, publishing our first anthology of poetry, fiction, and visual art from writers aged 14-22.',
 		image: firstPublicationImg
 	},
 	{
 		year: 2026,
 		title: 'Growing Community',
 		content: 'After more than a year of thought, our team worked on reshaping our mission as a development that has been quite natural behind the scenes and both reflects how our editorial interests and skills have grown and provides ways for us to better contribute to the litmag community.',
-		// content: 'Expanded to quarterly publications, featuring over 200 young artists and writers, plus monthly interviews with established literary figures.',
 		image: lastPublicationImg
 	}
 ]
 
-// Helper function to create drop cap text
 function createDropCapText(text: string) {
 	const firstChar = text.charAt(0);
 	const rest = text.slice(1);
@@ -42,7 +39,6 @@ function createDropCapText(text: string) {
 								)}
 							</div>
 							
-							<!-- Main content area -->
 							<div class="timeline-content-area">
 								<div class="timeline-header">
 									<h3 class="timeline-title">{item.year}</h3>
