@@ -9,7 +9,7 @@ import { MeetTheTeamSection } from '@/components/about/MeetTheTeamSection';
 import ContactForm from '@/components/ContactForm';
 import Timeline from '@/components/Timeline.astro';
 import Note from '@/components/about/Note.astro';
-
+import CallToAction from '@/components/CallToAction.astro';
 const seoData = {
 	title: "About The Borderline Literary Magazine - Our Mission & Team",
 	description: "Learn about The Borderline Literary Magazine's mission to draw rich and collaborative 'borderlines' of connection within the litmag community through inventive publications and projects. Meet our team and discover our story since 2021.",
@@ -52,6 +52,7 @@ const aboutStructuredData = {
 	<Timeline client:load/>
 	<Note  />
 	<MeetTheTeamSection client:load />
+	<CallToAction />
 	<script type="application/ld+json" set:html={JSON.stringify(aboutStructuredData)}></script>
 </LayoutHeader>
 

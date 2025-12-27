@@ -281,7 +281,7 @@ const ContactForm: React.FC = () => {
             id="message"
             name="message"
             required
-            rows={8}
+            rows={6}
             value={formData.message}
             onChange={handleInputChange}
             onKeyDown={(e) => {
@@ -301,18 +301,12 @@ const ContactForm: React.FC = () => {
             onClick={handleSubmit}
             disabled={isSubmitting}
             className={cn(
-              "text-[19px] font-normal py-2 px-0 border-b border-[#1a1a1a] transition-colors duration-200 disabled:border-gray-400 disabled:text-gray-400 disabled:cursor-not-allowed font-serif",
+              "text-[19px] font-normal py-2 px-4 rounded border-b bg-neutral-800 text-white border-[#1a1a1a] transition-colors duration-200 disabled:border-gray-400 disabled:text-gray-400 disabled:cursor-not-allowed font-serif",
               !isSubmitting && "hover:border-gray-600"
             )}
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
-        </div>
-        
-        <div className="pt-4">
-          <p className="text-sm text-gray-600 font-serif">
-            * Required fields. Your message will be answered within 48 hours.
-          </p>
         </div>
       </div>
     </form>

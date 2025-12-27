@@ -1,4 +1,21 @@
 ---
-// Redirect contact page to about page
-return Astro.redirect('/about', 301);
+import ContactForm from "@/components/ContactForm";
+import Header from "@/components/Header.astro";
+import LayoutHeader from "@/layouts/LayoutHeader.astro";
 ---
+
+
+<LayoutHeader>
+  <Header />
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24 pb-32 sm:pb-40">
+    <div class="max-w-5xl mx-auto">
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 mb-8 leading-tight">
+        Contact
+      </h1>
+      <p class="text-base sm:text-lg leading-relaxed text-zinc-700 dark:text-zinc-300 max-w-2xl">
+        We'd love to hear from you. Send us a message and we'll respond within 48 hours.
+      </p>
+    </div>
+    <ContactForm />
+  </div>
+</LayoutHeader>
