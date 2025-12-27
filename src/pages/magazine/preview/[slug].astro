@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import Header from "../../../components/Header.astro";
 import LayoutHeader from "../../../layouts/LayoutHeader.astro";
-import MagazineFlipbook from "../../../components/MagazineFlipbook.tsx";
+import MagazineFlipbook from "../../../components/MagazineFlipbook.astro";
 import { getMagazineColorPalette } from "../../../lib/imageColors.ts";
 
 export async function getStaticPaths() {
@@ -100,7 +100,7 @@ const structuredData = {
   <Header />
   
   <!-- Breadcrumb -->
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8" aria-label="Breadcrumb">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 md:pt-24" aria-label="Breadcrumb">
     <ol class="flex items-center space-x-2 text-sm text-gray-500">
       <li><a href="/" class="hover:text-gray-700">Home</a></li>
       <li>/</li>
@@ -150,7 +150,6 @@ const structuredData = {
         isPreview={false}
         colorPalette={colorPalette}
         coverImage={coverImage?.src || magazine.data.coverImage}
-        client:load
       />
     </div>
   ) : (

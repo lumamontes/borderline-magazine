@@ -1,57 +1,73 @@
-	---
-	import { Image } from 'astro:assets';
-	import Header from '../components/Header.astro';
-	import LayoutHeader from '../layouts/LayoutHeader.astro';
-	import AboutHeaderHero from '../components/AboutHeaderHero.astro';
-	import { Marquee } from '@/components/ui/marquee';
-	import MeetTheTeam from '@/components/MeetTheTeam.astro';
+---
+import Header from '../components/Header.astro';
+import LayoutHeader from '../layouts/LayoutHeader.astro';
+import { AboutPageContent } from '../components/AboutPageContent';
+import Hero from '@/components/Hero.astro';
+import Mission from '@/components/Mission.astro';
+import MeetTheTeam from '@/components/MeetTheTeam.astro';
+import { MeetTheTeamSection } from '@/components/about/MeetTheTeamSection';
+import ContactForm from '@/components/ContactForm';
+import Timeline from '@/components/Timeline.astro';
 
-	const seoData = {
-		title: "About The Borderline Literary Magazine - Our Mission & Team",
-		description: "Learn about The Borderline Literary Magazine's mission to draw rich and collaborative 'borderlines' of connection within the litmag community through inventive publications and projects. Meet our team and discover our story since 2021.",
-		image: "/about.png",
-		keywords: "about borderline literary magazine, literary magazine team, litmag mission, creative writing community, literary publication history, emerging writers support, established writers platform, print digital magazine",
-		type: "website",
-		section: "About"
-	};
+const seoData = {
+	title: "About The Borderline Literary Magazine - Our Mission & Team",
+	description: "Learn about The Borderline Literary Magazine's mission to draw rich and collaborative 'borderlines' of connection within the litmag community through inventive publications and projects. Meet our team and discover our story since 2021.",
+	image: "/about.png",
+	keywords: "about borderline literary magazine, literary magazine team, litmag mission, creative writing community, literary publication history, emerging writers support, established writers platform, print digital magazine",
+	type: "website",
+	section: "About"
+};
 
-	// Additional structured data for about page
-	const aboutStructuredData = {
-		"@context": "https://schema.org",
-		"@type": "AboutPage",
-		"name": "About The Borderline Literary Magazine",
-		"description": "Learn about The Borderline Literary Magazine's mission to draw rich and collaborative 'borderlines' of connection within the litmag community through inventive publications and projects.",
-		"url": "https://borderlinelitmag.com/about",
-		"mainEntity": {
-			"@type": "Organization",
-			"name": "The Borderline Literary Magazine",
-			"foundingDate": "2021",
-			"description": "A literary magazine platform for emerging and established writers and artists, creating collaborative connections within the litmag community through inventive publications and projects.",
-			"mission": "To draw rich and collaborative 'borderlines' of connection within the litmag community through inventive publications and projects",
-			"knowsAbout": [
-				"Creative Writing",
-				"Poetry",
-				"Fiction",
-				"Visual Art",
-				"Literary Community",
-				"Print Magazine",
-				"Digital Magazine"
-			]
-		}
-	};
-	---
+// Additional structured data for about page
+const aboutStructuredData = {
+	"@context": "https://schema.org",
+	"@type": "AboutPage",
+	"name": "About The Borderline Literary Magazine",
+	"description": "Learn about The Borderline Literary Magazine's mission to draw rich and collaborative 'borderlines' of connection within the litmag community through inventive publications and projects.",
+	"url": "https://borderlinelitmag.com/about",
+	"mainEntity": {
+		"@type": "Organization",
+		"name": "The Borderline Literary Magazine",
+		"foundingDate": "2021",
+		"description": "A literary magazine platform for emerging and established writers and artists, creating collaborative connections within the litmag community through inventive publications and projects.",
+		"mission": "To draw rich and collaborative 'borderlines' of connection within the litmag community through inventive publications and projects",
+		"knowsAbout": [
+			"Creative Writing",
+			"Poetry",
+			"Fiction",
+			"Visual Art",
+			"Literary Community",
+			"Print Magazine",
+			"Digital Magazine"
+		]
+	}
+};
+---
 
-	<LayoutHeader {...seoData}>
-		<Header />
-		<AboutHeaderHero />
-		<Marquee
-			className='bg-black text-white; py-8 sm:py-10 md:py-12'>
-			<span class="text-lg sm:text-xl md:text-2xl lg:text-4xl font-light italic uppercase px-4 text-white">
-				The Borderline Literary Magazine &nbsp; &nbsp; • &nbsp; &nbsp; Since 2021 &nbsp; &nbsp; • &nbsp; &nbsp; Explore. Create. Inspire.
-			</span>
-		</Marquee>
-		<MeetTheTeam />
+<LayoutHeader {...seoData}>
+	<Header />
+	<Hero  />
+	<Mission  />
+	<Timeline client:load/>
+	<MeetTheTeamSection client:load />
+	<!-- <MeetTheTeamSection client:load /> -->
+	<!-- Additional structured data for about page -->
+	<script type="application/ld+json" set:html={JSON.stringify(aboutStructuredData)}></script>
+</LayoutHeader>
 
-		<!-- Additional structured data for about page -->
-		<script type="application/ld+json" set:html={JSON.stringify(aboutStructuredData)}></script>
-	</LayoutHeader>
+<style>
+	/* Serif font for body text */
+	.font-serif {
+		font-family: "Inknut Antiqua", serif;
+	}
+
+	/* Kodchasan font for hero section */
+	.kodchasan-hero {
+		font-family: "Kodchasan", sans-serif !important;
+	}
+
+	/* Print-like background */
+	body {
+		background-color: #FAF9F6;
+	}
+</style>

@@ -1,0 +1,116 @@
+---
+import { Image } from 'astro:assets';
+import bgMission from '../assets/about/bgmission.png';
+---
+
+<section class="relative bg-white min-h-[80vh] sm:min-h-[90vh] md:min-h-screen flex items-center overflow-hidden mission-section">
+	<!-- Background Image -->
+	<div class="absolute inset-0 opacity-90" aria-hidden="true">
+		<Image 
+			src={bgMission} 
+			alt="" 
+			class="w-full h-full object-cover object-center"
+			loading="eager"
+			quality={90}
+		/>
+	</div>
+	
+	<!-- Content -->
+	<div class="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 md:py-32">
+		<h2 class="text-4xl sm:text-5xl md:text-6xl font-sans font-bold text-white mb-6 sm:mb-8 md:mb-10 fade-up">
+			Our mission
+		</h2>
+		<p class="text-lg sm:text-xl md:text-2xl font-sans text-white leading-relaxed fade-up-delay">
+			To draw 'borderlines' of connection amongst the litmag community through thought-provoking, frontier-pushing publications and projects.
+		</p>
+	</div>
+</section>
+
+<style>
+	.fade-up {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: opacity 1s ease-out, transform 1s ease-out;
+	}
+	
+	.fade-up-delay {
+		opacity: 0;
+		transform: translateY(30px);
+		transition: opacity 1s ease-out 0.3s, transform 1s ease-out 0.3s;
+	}
+	
+	.fade-up.visible,
+	.fade-up-delay.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	
+	/* Respect reduced motion preference */
+	@media (prefers-reduced-motion: reduce) {
+		.fade-up,
+		.fade-up-delay {
+			opacity: 1;
+			transform: none;
+			transition: none;
+		}
+	}
+</style>
+
+<script is:inline>
+	(function() {
+		// Wait for DOM to be ready
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', init);
+		} else {
+			init();
+		}
+		
+		function init() {
+			const missionSection = document.querySelector('.mission-section');
+			if (!missionSection) {
+				// Fallback: show text after 1 second if section not found
+				setTimeout(() => {
+					const heading = document.querySelector('.mission-section .fade-up');
+					const paragraph = document.querySelector('.mission-section .fade-up-delay');
+					if (heading) heading.classList.add('visible');
+					if (paragraph) paragraph.classList.add('visible');
+				}, 1000);
+				return;
+			}
+			
+			const heading = missionSection.querySelector('.fade-up');
+			const paragraph = missionSection.querySelector('.fade-up-delay');
+			
+			if (!heading || !paragraph) return;
+			
+			// Check if already in viewport on load
+			const rect = missionSection.getBoundingClientRect();
+			const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+			
+			if (isInViewport) {
+				heading.classList.add('visible');
+				paragraph.classList.add('visible');
+				return;
+			}
+			
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							heading.classList.add('visible');
+							paragraph.classList.add('visible');
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{
+					threshold: 0.2,
+					rootMargin: '0px 0px -50px 0px'
+				}
+			);
+			
+			observer.observe(missionSection);
+		}
+	})();
+</script>
+

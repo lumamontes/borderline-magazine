@@ -1,0 +1,414 @@
+---
+import { Image } from 'astro:assets';
+import firstPublicationImg from '../assets/magazines/volume/7.png';
+import lastPublicationImg from '../assets/magazines/volume1/cover.png';
+
+const timelineItems = [
+	{
+		year: 2021,
+		title: 'Our Beginning',
+		content: 'Since 2021, the borderline literary magazine has been active as a youth literary magazine focused on uplifting youth creative voices through publications, interviews, and occasional standalone projects.',
+		// content: 'Launched as a platform for emerging youth voices, publishing our first anthology of poetry, fiction, and visual art from writers aged 14-22.',
+		image: firstPublicationImg
+	},
+	{
+		year: 2026,
+		title: 'Growing Community',
+		content: 'After more than a year of thought, our team worked on reshaping our mission as a development that has been quite natural behind the scenes and both reflects how our editorial interests and skills have grown and provides ways for us to better contribute to the litmag community.',
+		// content: 'Expanded to quarterly publications, featuring over 200 young artists and writers, plus monthly interviews with established literary figures.',
+		image: lastPublicationImg
+	}
+]
+
+// Helper function to create drop cap text
+function createDropCapText(text: string) {
+	const firstChar = text.charAt(0);
+	const rest = text.slice(1);
+	return { firstChar, rest };
+}
+---
+
+<section class="timeline-section">
+	<div class="timeline-container">
+		<div class="timeline-track">
+			{timelineItems.map((item, index) => {
+				const { firstChar, rest } = createDropCapText(item.content);
+				return (
+					<article class={`timeline-item timeline-item-${index + 1}`}>
+						<div class="timeline-layout">
+							<div class="timeline-marginalia">
+								{index < timelineItems.length - 1 && (
+									<div class="timeline-rule"></div>
+								)}
+							</div>
+							
+							<!-- Main content area -->
+							<div class="timeline-content-area">
+								<div class="timeline-header">
+									<h3 class="timeline-title">{item.year}</h3>
+								</div>
+								
+								<div class="timeline-body">
+									<div class="timeline-image-wrapper">
+										<Image 
+											src={item.image} 
+											alt={`Magazine cover from ${item.year}`} 
+											class="timeline-image" 
+											loading="lazy" 
+											quality={90} 
+										/>
+									</div>
+									
+									<div class="timeline-text-wrapper">
+										<p class="timeline-text">
+											<span class="drop-cap">{firstChar}</span>{rest}
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+				);
+			})}
+		</div>
+	</div>
+</section>
+
+<style>
+	.timeline-section {
+		background: #F9F7F2;
+		padding: 8rem 0 10rem;
+	}
+	
+	.timeline-container {
+		max-width: 1400px;
+		margin: 0 auto;
+		padding: 0 4rem;
+	}
+	
+	.timeline-heading {
+		font-family: "Inknut Antiqua", serif;
+		font-size: clamp(2.5rem, 5vw, 4rem);
+		font-weight: 400;
+		text-align: left;
+		color: #1a1a1a;
+		margin-bottom: 8rem;
+		letter-spacing: -0.02em;
+	}
+	
+	.timeline-track {
+		display: grid;
+		gap: 0;
+		position: relative;
+	}
+	
+	.timeline-item {
+		opacity: 0;
+		transition: opacity 1.2s ease-out;
+		cursor: default;
+	}
+	
+	.timeline-item.visible {
+		opacity: 1;
+	}
+	
+	.timeline-item.visible:hover {
+		cursor: pointer;
+	}
+	
+	.timeline-layout {
+		display: grid;
+		grid-template-columns: 120px 1fr;
+		gap: 4rem;
+		position: relative;
+		padding: 6rem 0;
+		transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	
+	.timeline-item:hover .timeline-layout {
+		transform: translateX(8px);
+	}
+	
+	/* Marginalia: Year in left margin */
+	.timeline-marginalia {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		/* padding-top: 0.5rem; */
+	}
+	
+	.timeline-year {
+		font-family: "League Spartan", sans-serif;
+		font-size: 1.5rem;
+		font-weight: 400;
+		color: #1a1a1a;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		writing-mode: horizontal-tb;
+		line-height: 1.2;
+	}
+	
+	/* Fragmented vertical rule */
+	.timeline-rule {
+		position: absolute;
+		left: 0;
+		/* top: 2.5rem; */
+		width: 0.5px;
+		height: calc(100% + 12rem);
+		background: #1a1a1a;
+		opacity: 0.15;
+		transform: translateX(-50%);
+		transition: opacity 0.5s ease, width 0.5s ease;
+	}
+	
+	.timeline-item:hover .timeline-rule {
+		opacity: 0.3;
+		width: 0.75px;
+	}
+	
+	/* Main content area */
+	.timeline-content-area {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+		position: relative;
+		transition: padding-left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	
+	.timeline-item:hover .timeline-content-area {
+		padding-left: 4px;
+	}
+	
+	.timeline-header {
+		margin-bottom: 1rem;
+	}
+	
+	.timeline-title {
+		font-family: "Inknut Antiqua", serif;
+		font-size: clamp(1.75rem, 3vw, 2.5rem);
+		font-weight: 400;
+		color: #1a1a1a;
+		letter-spacing: -0.01em;
+		line-height: 1.2;
+		margin: 0;
+		position: relative;
+		display: inline-block;
+		transition: color 0.4s ease;
+	}
+	
+	.timeline-title::after {
+		content: '';
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+		width: 0;
+		height: 1px;
+		background: #1a1a1a;
+		transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+		opacity: 0.3;
+	}
+	
+	.timeline-item:hover .timeline-title {
+		color: #2a2a2a;
+	}
+	
+	.timeline-item:hover .timeline-title::after {
+		width: 100%;
+	}
+	
+	.timeline-body {
+		display: grid;
+		grid-template-columns: 280px 1fr;
+		gap: 4rem;
+		align-items: start;
+	}
+	
+	.timeline-image-wrapper {
+		width: 100%;
+		flex-shrink: 0;
+		overflow: hidden;
+		position: relative;
+	}
+	
+	.timeline-image {
+		width: 100%;
+		height: auto;
+		display: block;
+		opacity: 0.95;
+		transition: opacity 1.5s ease-out, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.6s ease;
+		transform-origin: center;
+	}
+	
+	.timeline-item.visible .timeline-image {
+		opacity: 1;
+	}
+	
+	.timeline-item:hover .timeline-image {
+		transform: scale(1.03);
+		filter: brightness(1.05) contrast(1.02);
+	}
+	
+	.timeline-text-wrapper {
+		padding-top: 0.25rem;
+	}
+	
+	.timeline-text {
+		font-family: "Inknut Antiqua", serif;
+		font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+		line-height: 1.85;
+		color: #2a2a2a;
+		margin: 0;
+		font-weight: 400;
+		letter-spacing: 0.01em;
+		transition: color 0.4s ease;
+	}
+	
+	.timeline-item:hover .timeline-text {
+		color: #1a1a1a;
+	}
+	
+	/* Drop cap styling */
+	.drop-cap {
+		float: left;
+		font-family: "Inknut Antiqua", serif;
+		font-size: 4.5em;
+		line-height: 0.85;
+		padding-top: 0.1em;
+		padding-right: 0.15em;
+		padding-bottom: 0;
+		color: #1a1a1a;
+		font-weight: 400;
+		transition: color 0.4s ease, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+		display: inline-block;
+	}
+	
+	.timeline-item:hover .drop-cap {
+		color: #000;
+		transform: scale(1.05);
+	}
+	
+	/* Tablet */
+	@media (max-width: 968px) {
+		.timeline-container {
+			padding: 0 3rem;
+		}
+		
+		.timeline-heading {
+			margin-bottom: 6rem;
+		}
+		
+		.timeline-layout {
+			grid-template-columns: 100px 1fr;
+			gap: 3rem;
+			padding: 5rem 0;
+		}
+		
+		.timeline-body {
+			grid-template-columns: 240px 1fr;
+			gap: 3rem;
+		}
+		
+		.drop-cap {
+			font-size: 4em;
+		}
+	}
+	
+	/* Mobile */
+	@media (max-width: 640px) {
+		.timeline-section {
+			padding: 5rem 0 7rem;
+		}
+		
+		.timeline-container {
+			padding: 0 2rem;
+		}
+		
+		.timeline-heading {
+			margin-bottom: 4rem;
+			text-align: left;
+		}
+		
+		.timeline-layout {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+			padding: 4rem 0;
+		}
+		
+		.timeline-marginalia {
+			position: relative;
+			flex-direction: row;
+			align-items: center;
+			gap: 1rem;
+			padding-top: 0;
+			margin-bottom: 1rem;
+		}
+		
+		.timeline-year {
+			font-size: 0.75rem;
+		}
+		
+		.timeline-rule {
+			position: relative;
+			left: 0;
+			top: 0;
+			width: 2rem;
+			height: 0.5px;
+			transform: none;
+		}
+		
+		.timeline-body {
+			grid-template-columns: 1fr;
+			gap: 2.5rem;
+		}
+		
+		.timeline-image-wrapper {
+			max-width: 200px;
+			margin: 0 auto;
+		}
+		
+		.timeline-text {
+			font-size: 1.0625rem;
+			line-height: 1.8;
+		}
+		
+		.drop-cap {
+			font-size: 3.5em;
+		}
+	}
+</style>
+
+<script>
+	// Subtle editorial fade-in animation
+	function initTimelineAnimation() {
+		const timelineItems = document.querySelectorAll('.timeline-item');
+		
+		if (timelineItems.length === 0) return;
+		
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting) {
+					entry.target.classList.add('visible');
+					observer.unobserve(entry.target);
+				}
+			});
+		}, {
+			threshold: 0.15,
+			rootMargin: '0px 0px -80px 0px'
+		});
+		
+		timelineItems.forEach((item, index) => {
+			// Stagger the observation slightly for elegant sequential reveal
+			setTimeout(() => {
+				observer.observe(item);
+			}, index * 100);
+		});
+	}
+	
+	// Initialize on page load
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initTimelineAnimation);
+	} else {
+		initTimelineAnimation();
+	}
+</script>

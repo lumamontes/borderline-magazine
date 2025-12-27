@@ -10,13 +10,13 @@ export interface Props { variant?: 'transparent' | 'solid', showLogo?: boolean }
 const { variant = 'solid', showLogo = false } = Astro.props as Props;
 const headerClasses =
   variant === 'transparent'
-    ? 'w-full py-4 sm:py-6 md:py-8 px-4 sm:px-6 lg:px-8 bg-transparent border-0 relative z-20'
-    : 'w-full py-4 sm:py-6 md:py-8 px-4 sm:px-6 lg:px-8 bg-white/95 backdrop-blur-sm border-b border-gray-100';
+    ? 'fixed top-0 left-0 right-0 w-full py-2 sm:py-3 md:py-4 px-4 sm:px-6 lg:px-8 bg-transparent border-0 z-20'
+    : 'fixed top-0 left-0 right-0 w-full py-2 sm:py-3 md:py-4 px-4 sm:px-6 lg:px-8 bg-white/95 backdrop-blur-sm border-b border-gray-100 z-20';
 ---
 <header class={headerClasses}>
   <nav class="w-full max-w-7xl mx-auto" role="navigation" aria-label="Main navigation">
     <!-- Mobile Header: Logo + Hamburger -->
-    <div class="lg:hidden flex items-center justify-between mb-6">
+    <div class="lg:hidden flex items-center justify-between mb-4">
       <Logo variant="mobile" showLogo={showLogo} />
       <MobileMenuToggle />
     </div>

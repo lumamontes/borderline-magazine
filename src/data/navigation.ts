@@ -23,13 +23,6 @@ export const navigationItems: NavigationItem[] = [
     alt: 'About'
   },
   {
-    id: 'contact',
-    label: 'Contact',
-    href: '/contact',
-    imageSrc: '/src/assets/hero/contact.png',
-    alt: 'Contact'
-  },
-  {
     id: 'zine',
     label: 'Zine',
     href: '/zine',

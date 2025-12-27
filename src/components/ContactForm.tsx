@@ -208,73 +208,38 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <div className="bg-white rounded-2xl p-8">
-      <div className="flex justify-between items-start mb-6">
-        <h3 className="text-2xl font-bold text-gray-900">Send a Message</h3>
-        {isDataRestored && (
+    <form className="space-y-8" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+      {isDataRestored && (
+        <div className="mb-6">
           <button
+            type="button"
             onClick={handleClearSavedData}
-            className="text-sm text-gray-500 hover:text-red-600 transition-colors duration-200 flex items-center space-x-1"
+            className="text-sm text-gray-500 hover:text-gray-700 transition-colors duration-200 underline decoration-gray-400 underline-offset-4 hover:decoration-gray-600"
             title="Clear saved data"
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-            </svg>
-            <span>Clear data</span>
+            Clear saved data
           </button>
-        )}
-      </div>
+        </div>
+      )}
       
       {submitStatus === 'success' && (
-        <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <svg className="w-5 h-5 text-green-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-              </svg>
-              <p className="text-green-800 font-medium">Message sent successfully!</p>
-            </div>
-            <button
-              onClick={() => setSubmitStatus('idle')}
-              className="text-green-600 hover:text-green-800 transition-colors"
-              title="Close message"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-            </button>
-          </div>
-          <p className="text-green-700 text-sm mt-1">We'll get back to you within 48 hours.</p>
+        <div className="mb-12 pb-6 border-b border-gray-300">
+          <p className="text-[19px] leading-[1.65] text-[#1a1a1a] font-serif mb-2">Message sent successfully.</p>
+          <p className="text-[19px] leading-[1.65] text-gray-600 font-serif">We'll get back to you within 48 hours.</p>
         </div>
       )}
       
       {submitStatus === 'error' && (
-        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <svg className="w-5 h-5 text-red-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <p className="text-red-800 font-medium">Error sending message</p>
-            </div>
-            <button
-              onClick={() => setSubmitStatus('idle')}
-              className="text-red-600 hover:text-red-800 transition-colors"
-              title="Close message"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-            </button>
-          </div>
-          <p className="text-red-700 text-sm mt-1">{errorMessage}</p>
+        <div className="mb-12 pb-6 border-b border-gray-300">
+          <p className="text-[19px] leading-[1.65] text-[#1a1a1a] font-serif mb-2">Error sending message.</p>
+          <p className="text-[19px] leading-[1.65] text-gray-600 font-serif">{errorMessage}</p>
         </div>
       )}
       
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="space-y-12">
+        <div className="space-y-12">
           <div>
-            <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
+            <label htmlFor="name" className="block text-[19px] font-normal text-[#1a1a1a] mb-4 font-serif">
               Name *
             </label>
             <input
@@ -285,13 +250,13 @@ const ContactForm: React.FC = () => {
               value={formData.name}
               onChange={handleInputChange}
               disabled={isSubmitting}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed"
+              className="w-full px-0 py-2 border-0 border-b border-gray-300 focus:border-[#1a1a1a] transition-colors duration-200 placeholder-gray-400 disabled:bg-transparent disabled:cursor-not-allowed font-serif text-[19px] leading-[1.65] bg-transparent focus:outline-none"
               placeholder="Your full name"
             />
           </div>
           
           <div>
-            <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
+            <label htmlFor="email" className="block text-[19px] font-normal text-[#1a1a1a] mb-4 font-serif">
               Email *
             </label>
             <input
@@ -302,21 +267,21 @@ const ContactForm: React.FC = () => {
               value={formData.email}
               onChange={handleInputChange}
               disabled={isSubmitting}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 disabled:bg-gray-100 disabled:cursor-not-allowed"
+              className="w-full px-0 py-2 border-0 border-b border-gray-300 focus:border-[#1a1a1a] transition-colors duration-200 placeholder-gray-400 disabled:bg-transparent disabled:cursor-not-allowed font-serif text-[19px] leading-[1.65] bg-transparent focus:outline-none"
               placeholder="your@email.com"
             />
           </div>
         </div>
         
         <div>
-          <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
+          <label htmlFor="message" className="block text-[19px] font-normal text-[#1a1a1a] mb-4 font-serif">
             Message *
           </label>
           <textarea
             id="message"
             name="message"
             required
-            rows={6}
+            rows={8}
             value={formData.message}
             onChange={handleInputChange}
             onKeyDown={(e) => {
@@ -325,8 +290,8 @@ const ContactForm: React.FC = () => {
               }
             }}
             disabled={isSubmitting}
-            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 resize-none disabled:bg-gray-100 disabled:cursor-not-allowed"
-            placeholder="Write your message here... (Ctrl+Enter to send)"
+            className="w-full px-0 py-2 border-0 border-b border-gray-300 focus:border-[#1a1a1a] transition-colors duration-200 placeholder-gray-400 resize-none disabled:bg-transparent disabled:cursor-not-allowed font-serif text-[19px] leading-[1.65] bg-transparent focus:outline-none"
+            placeholder="Write your message here..."
           />
         </div>
         
@@ -336,33 +301,21 @@ const ContactForm: React.FC = () => {
             onClick={handleSubmit}
             disabled={isSubmitting}
             className={cn(
-              "w-full font-semibold py-3 px-6 rounded-xl transition-all duration-200 ",
-              isSubmitting
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-xl focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              "text-[19px] font-normal py-2 px-0 border-b border-[#1a1a1a] transition-colors duration-200 disabled:border-gray-400 disabled:text-gray-400 disabled:cursor-not-allowed font-serif",
+              !isSubmitting && "hover:border-gray-600"
             )}
           >
-            {isSubmitting ? (
-              <div className="flex items-center justify-center">
-                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Sending...
-              </div>
-            ) : (
-              'Send Message'
-            )}
+            {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
         </div>
         
-        <div className="text-center space-y-2">
-          <p className="text-xs text-gray-500">
+        <div className="pt-4">
+          <p className="text-sm text-gray-600 font-serif">
             * Required fields. Your message will be answered within 48 hours.
           </p>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 

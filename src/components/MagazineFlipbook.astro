@@ -1,0 +1,286 @@
+---
+import type { ColorPalette } from '../lib/magazineColors';
+
+interface PageImage {
+  src: string;
+  alt?: string;
+}
+
+interface Props {
+  pageImages: PageImage[];
+  title?: string;
+  isPreview?: boolean;
+  magazineSlug?: string;
+  colorPalette?: ColorPalette;
+  coverImage?: string;
+}
+
+const { pageImages, title, isPreview = false, magazineSlug, colorPalette, coverImage } = Astro.props;
+
+// Limit pages in preview mode
+const displayImages = isPreview ? pageImages.slice(0, 3) : pageImages;
+const totalPages = displayImages.length;
+const uniqueId = `magazine-viewer-${magazineSlug || 'magazine'}-${Date.now()}`;
+---
+
+<div 
+  class="magazine-flipbook-container w-full flex flex-col items-center relative"
+  style={colorPalette ? {
+    '--magazine-primary': colorPalette.primary,
+    '--magazine-secondary': colorPalette.secondary,
+    '--magazine-accent': colorPalette.accent,
+    '--magazine-background': colorPalette.background,
+    '--magazine-text': colorPalette.text,
+    '--magazine-button': colorPalette.button,
+    '--magazine-button-hover': colorPalette.buttonHover,
+    '--magazine-border': colorPalette.border,
+  } : {}}
+>
+  {pageImages.length === 0 ? (
+    <div class="flex items-center justify-center p-8 bg-gray-50 rounded-lg">
+      <p class="text-gray-500">No pages available for this magazine.</p>
+    </div>
+  ) : (
+    <>
+      <!-- Magazine Viewer Container -->
+      <div 
+        id={uniqueId}
+        class="magazine-viewer-container w-full max-w-5xl bg-white rounded-lg shadow-lg overflow-hidden"
+        style={{ 
+          backgroundColor: colorPalette?.background || "#ffffff"
+        }}
+      >
+        <!-- Viewer Header -->
+        <div class="viewer-header bg-gray-50 px-4 py-3 border-b flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <h3 class="text-lg font-semibold text-gray-800">{title}</h3>
+            <span class="text-sm text-gray-500">{totalPages} pages</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="fullscreen-btn" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded" title="Toggle Fullscreen">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Page Display -->
+        <div class="page-display bg-gray-100 flex items-center justify-center" style="height: 600px;">
+          <div id="current-page-container" class="flex gap-4 h-full items-center justify-center p-4">
+            <!-- Pages will be inserted here -->
+          </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="viewer-controls bg-gray-50 px-4 py-3 border-t">
+          <div class="flex items-center justify-between">
+            <!-- Page Navigation -->
+            <div class="flex items-center gap-2">
+              <button id="prev-btn" class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors">
+                Previous
+              </button>
+              <button id="next-btn" class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors">
+                Next
+              </button>
+            </div>
+
+            <!-- Page Info -->
+            <div class="flex items-center gap-4">
+              <span id="page-info" class="text-sm text-gray-600">Page 1 of {totalPages}</span>
+              
+              <!-- View Mode Toggle -->
+              <div class="flex items-center gap-1 bg-gray-200 rounded-lg p-1">
+                <button id="single-page-btn" class="px-3 py-1 rounded text-sm bg-gray-800 text-white transition-colors">Single</button>
+                <button id="double-page-btn" class="px-3 py-1 rounded text-sm text-gray-600 hover:bg-gray-300 transition-colors">Double</button>
+              </div>
+            </div>
+
+            <!-- Zoom Controls -->
+            <div class="flex items-center gap-2">
+              <button id="zoom-out-btn" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded" title="Zoom Out">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4"></path>
+                </svg>
+              </button>
+              <span id="zoom-level" class="text-sm text-gray-600 min-w-[60px] text-center">100%</span>
+              <button id="zoom-in-btn" class="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-200 rounded" title="Zoom In">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </>
+  )}
+</div>
+
+<style>
+  /* BookReader CSS will be loaded dynamically */
+  .bookreader-container {
+    position: relative;
+  }
+</style>
+
+<script define:vars={{ displayImages, title, magazineSlug, coverImage, totalPages, uniqueId }}>
+  // Function to load dependencies and BookReader
+  async function initBookReader() {
+    try {
+      const container = document.getElementById(uniqueId);
+      const loadingIndicator = document.getElementById('loading-indicator');
+      const bookInfo = document.getElementById('book-info');
+      
+      if (!container || displayImages.length === 0) return;
+
+      // Load jQuery first
+      if (!window.jQuery) {
+        await new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = 'https://code.jquery.com/jquery-3.6.0.min.js';
+          script.onload = () => {
+            console.log('jQuery loaded');
+            resolve();
+          };
+          script.onerror = () => reject(new Error('Failed to load jQuery'));
+          document.head.appendChild(script);
+        });
+      }
+
+      // Load BookReader CSS
+      if (!document.querySelector('link[href*="BookReader"]')) {
+        const cssLink = document.createElement('link');
+        cssLink.rel = 'stylesheet';
+        cssLink.href = 'https://cdn.jsdelivr.net/npm/@internetarchive/bookreader@5.0.0-87/BookReader/BookReader.css';
+        document.head.appendChild(cssLink);
+      }
+
+      // Load BookReader JavaScript
+      if (!window.BookReader) {
+        await new Promise((resolve, reject) => {
+          const script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/npm/@internetarchive/bookreader@5.0.0-87/BookReader/BookReader.js';
+          script.onload = () => {
+            console.log('BookReader loaded from CDN');
+            resolve();
+          };
+          script.onerror = () => reject(new Error('Failed to load BookReader from CDN'));
+          document.head.appendChild(script);
+        });
+      }
+
+      // Wait a bit for everything to initialize
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      initializeBookReader();
+
+      function initializeBookReader() {
+        try {
+          // Clear loading indicator
+          if (loadingIndicator) {
+            loadingIndicator.style.display = 'none';
+          }
+
+          // Clear the container
+          container.innerHTML = '';
+
+          // Create a dedicated BookReader container
+          const brContainer = document.createElement('div');
+          brContainer.id = `br-${uniqueId}`;
+          brContainer.style.width = '100%';
+          brContainer.style.height = '600px';
+          container.appendChild(brContainer);
+
+          // Create BookReader with proper options
+          const options = {
+            el: `#${brContainer.id}`,
+            data: displayImages.map((image, index) => [{
+              width: 800,
+              height: 1000,
+              uri: image.src,
+              reduce: 1
+            }]),
+            bookId: magazineSlug || 'magazine',
+            bookTitle: title || 'Magazine',
+            bookUrl: '',
+            bookUrlText: '',
+            thumbnail: coverImage || displayImages[0]?.src,
+            ui: 'full',
+            controls: {
+              embed: false,
+              share: false,
+              info: false
+            }
+          };
+
+          const br = new window.BookReader(options);
+
+          // Alternative approach: Set up data source methods
+          br.getPageWidth = function(index) { return 800; };
+          br.getPageHeight = function(index) { return 1000; };
+          br.getPageURI = function(index, reduce, rotate) { 
+            return displayImages[index] ? displayImages[index].src : '';
+          };
+          br.getPageSide = function(index) { return 'R'; };
+          br.getPageNum = function(index) { return index + 1; };
+          br.getSpreadIndices = function(pindex) { return [pindex]; };
+          br.numLeafs = displayImages.length;
+          br.bookTitle = title || 'Magazine';
+          br.bookUrl = '';
+          br.bookUrlText = '';
+          br.thumbnail = coverImage || displayImages[0]?.src;
+          br.ui = 'full';
+          br.mode = br.constMode2up || 2;
+          br.reduce = 2;
+
+          // Initialize with the container element
+          br.init();
+
+          console.log('BookReader initialized successfully');
+
+          // Show book info
+          if (bookInfo) {
+            bookInfo.style.display = 'block';
+          }
+
+        } catch (initError) {
+          console.error('BookReader initialization error:', initError);
+          throw initError;
+        }
+      }
+
+    } catch (error) {
+      console.error('Failed to load BookReader:', error);
+      
+      // Show error message
+      const container = document.getElementById(uniqueId);
+      const loadingIndicator = document.getElementById('loading-indicator');
+      
+      if (container && loadingIndicator) {
+        loadingIndicator.innerHTML = `
+          <div class="text-center">
+            <div class="text-red-600 mb-4">
+              <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L5.232 13.5c-.77.833.192 2.5 1.732 2.5z"></path>
+              </svg>
+            </div>
+            <p class="text-gray-600">Failed to load magazine reader</p>
+            <p class="text-sm text-gray-500 mt-2">Error: ${error.message}</p>
+            <button onclick="location.reload()" class="mt-2 px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">
+              Retry
+            </button>
+          </div>
+        `;
+      }
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initBookReader);
+  } else {
+    initBookReader();
+  }
+</script>

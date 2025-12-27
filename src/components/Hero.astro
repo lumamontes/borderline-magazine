@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+import birdsImage from '../assets/birds.png';
+import { ParallaxLayer } from './animations/ParallaxLayer';
+---
+
+<section class="relative min-h-[70vh] flex items-center bg-[#F7EFE3] overflow-hidden">
+	<!-- Background Image Layer with Parallax -->
+	<div class="absolute inset-0 opacity-90 overflow-hidden">
+		<ParallaxLayer client:load speed={0.5} className="w-full h-full">
+			<Image 
+				src={birdsImage} 
+				alt="" 
+				class="w-full h-full object-cover object-center"
+				loading="eager"
+				quality={90}
+			/>
+		</ParallaxLayer>
+	</div>
+
+	<!-- Content Container -->
+	<div class="relative z-10 w-full">
+		<div class="container mx-auto px-6 sm:px-8 lg:px-12 py-24 sm:py-32 lg:py-40">
+			<div class="max-w-5xl">
+				<h1 class="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-serif text-[#111] mb-6 lg:mb-8 tracking-tight leading-[0.9]">
+					<span class="block">The Borderline</span>
+					<span class="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl italic font-light mt-2">Literary Magazine</span>
+				</h1>
+				
+				<div class="border-l-4 border-[#111] pl-6 mt-8 lg:mt-12">
+					<p class="text-xl sm:text-2xl lg:text-3xl font-serif text-[#111]/80 font-light leading-relaxed">
+						Connecting borderlines 
+					</p>
+					<p class="text-base sm:text-lg text-[#111]/60 mt-3 font-sans tracking-wide uppercase">
+						Est. 2021
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,300;1,400&family=Inter:wght@400;500&display=swap');
+	
+	.font-serif {
+		font-family: 'Playfair Display', serif;
+	}
+	
+	.font-sans {
+		font-family: 'Inter', sans-serif;
+		letter-spacing: 0.025em;
+	}
+	
+	.italic {
+		font-style: italic;
+	}
+	
+	.font-light {
+		font-weight: 300;
+	}
+	
+	/* Optional: Add subtle animation */
+	@media (prefers-reduced-motion: no-preference) {
+		h1 {
+			animation: fadeInUp 0.8s ease-out;
+		}
+		
+		.border-l-4 {
+			animation: fadeInUp 0.8s ease-out 0.2s both;
+		}
+	}
+	
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>
