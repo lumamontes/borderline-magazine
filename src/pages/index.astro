@@ -72,13 +72,64 @@ const homepageStructuredData = {
 		<Header  />
 
 		<!-- Hero Section: Editorial Layout -->
-		<section class="relative h-screen bg-[#FBF1DE]">
+		<section class="relative min-h-screen lg:h-screen bg-[#FBF1DE]">
 			<!-- Subtle paper texture overlay -->
 			<div class="absolute inset-0 opacity-[0.03] bg-paper-texture pointer-events-none"></div>
 			
-			<div class="w-full h-full flex">
-				<!-- Left Column: Editorial Content -->
-				<div class="w-full lg:w-1/2 flex flex-col justify-center px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 space-y-8 sm:space-y-10">
+			<div class="w-full h-full flex flex-col lg:flex-row">
+				<!-- Mobile: Full screen content -->
+				<div class="lg:hidden w-full min-h-screen flex flex-col justify-center px-6 py-20 space-y-8">
+					<!-- Masthead -->
+					<header class="space-y-6 text-center">
+						<div class="space-y-2">
+							<h1 class="font-title italic text-4xl sm:text-5xl font-light tracking-tight text-[#1A1A1A] leading-[0.85]">
+								THE
+							</h1>
+							<h2 class="font-title font-bold text-4xl sm:text-5xl tracking-tight text-[#1A1A1A] leading-[0.85]">
+								BORDER-
+							</h2>
+							<h2 class="font-title text-4xl sm:text-5xl font-bold tracking-tight text-[#1A1A1A] leading-[0.85]">
+								LINE
+							</h2>
+						</div>
+						<Image src={CactusImg} alt="Cactus" class="mx-auto w-16 h-16 object-contain" />
+						<h3 class="font-lato text-sm sm:text-base font-medium tracking-[0.3em] text-[#1A1A1A] leading-tight">
+							LITERARY MAGAZINE
+						</h3>
+					</header>
+
+					<!-- Mobile Image -->
+					<div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
+						<Image src={BannerImg} alt="Banner" class="w-full h-full object-cover" />
+					</div>
+
+					<!-- Mobile Quote -->
+					<div class="bg-black rounded-lg p-6 mx-4">
+						<p class="font-azeret-mono text-white text-center text-sm leading-relaxed">
+							Inventive publications, collaborative projects and a space for the spaces in between.
+						</p>
+					</div>
+					
+					<!-- Editorial CTAs -->
+					<div class="flex flex-col gap-4 px-4">
+						<a 
+							href="/magazine" 
+							class="group inline-flex items-center justify-center px-8 py-4 bg-[#1A1A1A] text-[#FEFEFE] text-base font-medium tracking-wide uppercase letter-spacing-[0.1em] border border-[#1A1A1A] hover:bg-[#2A2A2A] transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#FEFEFE]"
+						>
+							<span class="group-hover:tracking-[0.15em] transition-all duration-300">Current Issue</span>
+						</a>
+						
+						<a 
+							href="/about" 
+							class="group inline-flex items-center justify-center px-8 py-4 bg-transparent text-[#1A1A1A] text-base font-medium tracking-wide uppercase letter-spacing-[0.1em] border border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#FEFEFE] transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#FEFEFE]"
+						>
+							<span class="group-hover:tracking-[0.15em] transition-all duration-300">About</span>
+						</a>
+					</div>
+				</div>
+
+				<!-- Desktop: Left Column: Editorial Content -->
+				<div class="hidden lg:flex lg:w-1/2 flex-col justify-center px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 space-y-8 sm:space-y-10">
 					<!-- Masthead -->
 					<header class="space-y-3 sm:space-y-4">
 						<div class="flex items-baseline justify-start">
@@ -122,12 +173,9 @@ const homepageStructuredData = {
 							<span class="group-hover:tracking-[0.15em] transition-all duration-300">About</span>
 						</a>
 					</div>
-					
-					<!-- Social Media -->
-				
 				</div>
 
-				<!-- Right Column: Image and Text Overlay -->
+				<!-- Desktop: Right Column: Image and Text Overlay -->
 				<div class="hidden lg:flex lg:w-1/2 relative flex-col">
 					<div class="flex-1 relative">
 						<Image src={BannerImg} alt="Banner" class="w-full h-full object-cover" />
@@ -142,26 +190,63 @@ const homepageStructuredData = {
 			</div>
 		</section>
 
-		<section class="relative h-screen bg-[#FBF1DE]">
+		<section class="relative min-h-screen lg:h-screen bg-[#FBF1DE]">
 			<!-- Subtle paper texture overlay -->
 			<div class="absolute inset-0 opacity-[0.03] bg-paper-texture pointer-events-none"></div>
 			
-			<div class="w-full h-full flex">
-				<!-- Left Column: Editorial Content -->
-				<div class="hidden lg:flex lg:w-1/2 relative flex-col">
-					<!-- Banner Image -->
-					<div class="flex-1 relative">
-						<Image src={CatImg} alt="Banner" class="w-full h-full " />
+			<div class="w-full h-full flex flex-col lg:flex-row">
+				<!-- Mobile: Full screen content -->
+				<div class="lg:hidden w-full min-h-screen flex flex-col justify-center px-6 py-20 space-y-8">
+					<!-- FREE label -->
+					<div class="flex items-center justify-center">
+						<span class="font-azeret-mono text-lg font-light tracking-wider bg-white px-4 py-2 rounded-full">
+							FREE
+						</span>
 					</div>
-					<!-- Full Black Section with Text -->
+
+					<!-- Mobile Image -->
+					<div class="relative w-full aspect-square max-w-sm mx-auto rounded-lg overflow-hidden">
+						<Image src={CatImg} alt="Mini Zine" class="w-full h-full object-cover" />
+					</div>
+
+					<!-- Content -->
+					<header class="space-y-6 text-center">
+						<h2 class="font-title font-bold text-3xl sm:text-4xl tracking-tight text-[#1A1A1A] leading-[0.85]">
+							MINI ZINE
+						</h2>
+						<h3 class="font-lato text-lg sm:text-xl font-medium text-[#1A1A1A] leading-tight">
+							Reflections and aspirations
+						</h3>
+						<p class="font-azeret-mono text-base sm:text-lg font-light leading-relaxed">
+							(2025-2026)
+						</p>
+					</header>
+					
+					<!-- Editorial CTAs -->
+					<div class="flex flex-col gap-4 px-4">
+						<a 
+							href="/zine" 
+							class="group inline-flex items-center justify-center px-8 py-4 bg-transparent text-[#1A1A1A] text-base font-medium tracking-wide uppercase letter-spacing-[0.1em] border border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#FEFEFE] transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#FEFEFE]"
+						>
+							<span class="group-hover:tracking-[0.15em] transition-all duration-300">Explore</span>
+						</a>
+					</div>
 				</div>
-				<div class="w-full lg:w-1/2 flex flex-col justify-between px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 space-y-8 sm:space-y-10">
+
+				<!-- Desktop: Left Column: Image -->
+				<div class="hidden lg:flex lg:w-1/2 relative flex-col">
+					<div class="flex-1 relative">
+						<Image src={CatImg} alt="Banner" class="w-full h-full object-cover" />
+					</div>
+				</div>
+
+				<!-- Desktop: Right Column: Content -->
+				<div class="hidden lg:flex lg:w-1/2 flex-col justify-between px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 space-y-8 sm:space-y-10">
 					<!-- Masthead -->
 					<div class="flex items-center justify-end font-azeret-mono text-xl font-light leading-relaxed">
 						FREE 
 					</div>
 					<header class="space-y-3 sm:space-y-4">
-						
 						<div class="flex items-center gap-3 sm:gap-4">
 							<h2 class="font-title font-bold text-5xl sm:text-6xl md:text-7xl lg:text-9xl tracking-tight text-[#1A1A1A] leading-[0.85]">
 								MINI ZINE
@@ -188,23 +273,45 @@ const homepageStructuredData = {
 							<span class="group-hover:tracking-[0.15em] transition-all duration-300">Explore</span>
 						</a>
 					</div>
-					
-					<!-- Social Media -->
-				
 				</div>
-
-				<!-- Right Column: Image and Text Overlay -->
-			
 			</div>
 		</section>
 
-		<section class="relative h-screen bg-[#82BD99]">
+		<section class="relative min-h-screen lg:h-screen bg-[#82BD99]">
 			<!-- Subtle paper texture overlay -->
 			<div class="absolute inset-0 opacity-[0.03] bg-paper-texture pointer-events-none"></div>
 			
-			<div class="w-full h-full flex">
-				<!-- Left Column: Editorial Content -->
-				<div class="w-full lg:w-3/4 flex flex-col justify-center px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 space-y-8 sm:space-y-10">
+			<div class="w-full h-full flex flex-col lg:flex-row">
+				<!-- Mobile: Full screen content -->
+				<div class="lg:hidden w-full min-h-screen flex flex-col justify-center px-6 py-20 space-y-8">
+					<!-- Content -->
+					<header class="space-y-6 text-center">
+						<h2 class="font-title font-bold text-3xl sm:text-4xl tracking-tight text-[#1A1A1A] leading-[0.85]">
+							Want to get involved?
+						</h2>
+						<p class="font-lato text-lg sm:text-xl font-medium text-[#FBF1DE] leading-tight">
+							We'd love to hear from you. Send us a message with questions (or just to say hi) and we will get in touch!
+						</p>
+					</header>
+
+					<!-- Mobile Video -->
+					<div class="relative w-full aspect-video rounded-lg overflow-hidden">
+						<video src={IntroVideo} class="w-full h-full object-cover" playsinline muted loop autoplay />
+					</div>
+					
+					<!-- Editorial CTAs -->
+					<div class="flex flex-col gap-4 px-4">
+						<a 
+							href="/contact" 
+							class="group inline-flex items-center justify-center px-8 py-4 bg-[#1A1A1A] text-[#FEFEFE] text-base font-medium tracking-wide uppercase letter-spacing-[0.1em] border border-[#1A1A1A] hover:bg-[#2A2A2A] transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#FEFEFE]"
+						>
+							<span class="group-hover:tracking-[0.15em] transition-all duration-300">Send message</span>
+						</a>
+					</div>
+				</div>
+
+				<!-- Desktop: Left Column: Content -->
+				<div class="hidden lg:flex lg:w-3/4 flex-col justify-center px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 space-y-8 sm:space-y-10">
 					<!-- Masthead -->
 					<header class="space-y-3 sm:space-y-4">
 						<div class="flex items-center gap-3 sm:gap-4">
@@ -231,21 +338,77 @@ const homepageStructuredData = {
 					</div>
 				</div>
 
-				<!-- Right Column: Image and Text Overlay -->
+				<!-- Desktop: Right Column: Video -->
 				<div class="hidden lg:flex lg:w-1/2 relative flex-col">
-						<div class="flex-1 relative">
-							<video src={IntroVideo} class="w-full h-full object-cover"  playsinline muted loop autoplay />
-						</div>
+					<div class="flex-1 relative">
+						<video src={IntroVideo} class="w-full h-full object-cover"  playsinline muted loop autoplay />
+					</div>
 				</div>
 			</div>
 		</section>
-		<section class="relative h-screen bg-black">
+		<section class="relative min-h-screen lg:h-screen bg-black">
 			<!-- Subtle paper texture overlay -->
 			<div class="absolute inset-0 opacity-[0.03] bg-paper-texture pointer-events-none"></div>
 			
-			<div class="w-full h-full flex">
-				<!-- Left Column: Text Content -->
-				<div class="w-full lg:w-1/2 flex flex-col justify-center px-12 lg:px-20 py-20">
+			<div class="w-full h-full flex flex-col lg:flex-row">
+				<!-- Mobile: Full screen content -->
+				<div class="lg:hidden w-full min-h-screen flex flex-col justify-center px-6 py-20 space-y-8">
+					<!-- Content -->
+					<div class="text-center space-y-6">
+						<div class="text-gray-400 text-xs uppercase tracking-[0.2em] font-medium">
+							OUR VOLUMES
+						</div>
+						<h2 class="text-white text-2xl sm:text-3xl font-light leading-tight">
+							Our literary magazine past volumes, available to read online now in a digital flipbook format.
+						</h2>
+					</div>
+
+					<!-- Mobile Magazine Covers - Simplified Stack -->
+					<div class="relative w-full max-w-sm mx-auto h-[400px]">
+						<!-- Primary Volume Cover -->
+						<div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-[200px] shadow-xl z-30">
+							<Image 
+								src={VolumeCover5} 
+								alt="The Borderline - Poetry, Prose, Photography & Visual Art" 
+								class="w-full h-auto object-cover rounded-lg"
+								loading="eager"
+							/>
+						</div>
+						
+						<!-- Secondary Volume Cover -->
+						<div class="absolute top-[80px] left-[20px] w-[160px] transform rotate-[-5deg] shadow-lg z-20">
+							<Image 
+								src={VolumeCover4} 
+								alt="Dreaming in the Dark - Poetry, Prose, Visual Art" 
+								class="w-full h-auto object-cover rounded-lg"
+								loading="eager"
+							/>
+						</div>
+						
+						<!-- Tertiary Volume Cover -->
+						<div class="absolute top-[80px] right-[20px] w-[140px] transform rotate-[5deg] shadow-lg z-10">
+							<Image 
+								src={VolumeCover1} 
+								alt="The Underline - Literary Magazine" 
+								class="w-full h-auto object-cover rounded-lg"
+								loading="eager"
+							/>
+						</div>
+					</div>
+					
+					<!-- CTA -->
+					<div class="flex justify-center px-4">
+						<a 
+							href="/magazine" 
+							class="inline-block px-8 py-4 bg-transparent text-white text-base font-medium tracking-wider uppercase border-2 border-white hover:bg-white hover:text-black transition-all duration-300"
+						>
+							Read now
+						</a>
+					</div>
+				</div>
+
+				<!-- Desktop: Left Column: Text Content -->
+				<div class="hidden lg:flex lg:w-1/2 flex-col justify-center px-12 lg:px-20 py-20">
 					<div class="max-w-xl">
 						<h2 class="text-white text-4xl lg:text-5xl font-light leading-tight mb-12">
 							Our literary magazine past volumes, available to read online now in a digital flipbook format.
@@ -261,7 +424,7 @@ const homepageStructuredData = {
 					</div>
 				</div>
 		
-				<!-- Right Column: Magazine Covers -->
+				<!-- Desktop: Right Column: Magazine Covers -->
 				<div class="hidden lg:flex lg:w-1/2 relative items-center justify-center">
 					<div class="relative w-full max-w-2xl h-[600px]">
 						<!-- Header text -->
