@@ -7,7 +7,12 @@ import VolumeCover4 from '../assets/magazines/volume4/pages/Volume IV FINAL - Ja
 import VolumeCover5 from '../assets/magazines/volume5/pages/Volume V FINAL - October 2023-01.png';
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
-
+import CactusImg from '../assets/cactus.svg';
+import BannerImg from '../assets/banner.png';
+import CatImg from '../assets/cat.png';
+import { ParallaxLayer } from '@/components/animations/ParallaxLayer';
+import IntroVideo from '../assets/video.mp4';
+import Footer from '@/components/Footer.astro';
 const seoData = {
 	title: "The Borderline Literary Magazine - Explore. Create. Inspire.",
 	description: "The Borderline Literary Magazine - A platform for emerging and established writers and artists. Since 2021, we've been drawing rich and collaborative 'borderlines' of connection within the litmag community through inventive publications and projects.",
@@ -64,107 +69,246 @@ const homepageStructuredData = {
 <Layout {...seoData}>
 	<main >
 		<!-- Header -->
-		<Header variant={'transparent'} showLogo={true} />
+		<Header  />
 
 		<!-- Hero Section: Editorial Layout -->
-		<section class="relative  flex items-center bg-gradient-to-br from-[#F9F6F1] via-[#FEFEFE] to-[#F5F2ED] pt-16 sm:pt-18 md:pt-20">
+		<section class="relative h-screen bg-[#FBF1DE]">
 			<!-- Subtle paper texture overlay -->
 			<div class="absolute inset-0 opacity-[0.03] bg-paper-texture pointer-events-none"></div>
 			
-			<div class="w-full max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20">
-				<div class="grid grid-cols-1 lg:grid-cols-12 items-start gap-8 lg:gap-12">
-					
-					<!-- Left Column: Editorial Content -->
-					<div class="lg:col-span-6 flex flex-col justify-center h-[500px] lg:h-[600px] space-y-8 sm:space-y-10">
-						<!-- Masthead -->
-						<header class="space-y-4 sm:space-y-5">
-							<div class="flex items-baseline gap-3">
-								<h1 class="font-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light  tracking-tight text-[#1A1A1A] leading-[0.85]">
-									The <strong>Borderline</strong>
-								</h1>
-							</div>
-							<div class="flex items-center gap-4 mt-3">
-								<div class="h-[1px] w-12 bg-[#D4AF37]"></div>
-								<h2 class="text-lg sm:text-xl md:text-2xl font-light lowercase text-[#444] tracking-wide letter-spacing-wide">
-									literary magazine
-								</h2>
-								<div class="h-[1px] flex-1 bg-[#E5E5E5]"></div>
-							</div>
-						</header>
-						
-						<!-- Editorial CTAs -->
-						<div class="flex flex-col sm:flex-row gap-5 sm:gap-6">
-							<a 
-								href="/magazine" 
-								class="group inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-[#1A1A1A] text-[#FEFEFE] text-base sm:text-lg font-medium tracking-wide uppercase letter-spacing-[0.1em] border border-[#1A1A1A] hover:bg-[#2A2A2A] transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#FEFEFE]"
-							>
-								<span class="group-hover:tracking-[0.15em] transition-all duration-300">Current Issue</span>
-							</a>
-							
-							<a 
-								href="/contact" 
-								class="group inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-transparent text-[#1A1A1A] text-base sm:text-lg font-medium tracking-wide uppercase letter-spacing-[0.1em] border border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#FEFEFE] transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#FEFEFE]"
-							>
-								<span class="group-hover:tracking-[0.15em] transition-all duration-300">Submissions</span>
-							</a>
+			<div class="w-full h-full flex">
+				<!-- Left Column: Editorial Content -->
+				<div class="w-full lg:w-1/2 flex flex-col justify-center px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 space-y-8 sm:space-y-10">
+					<!-- Masthead -->
+					<header class="space-y-3 sm:space-y-4">
+						<div class="flex items-baseline justify-start">
+							<h1 class="font-title italic text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-light tracking-tight text-[#1A1A1A] leading-[0.85]">
+								THE
+							</h1>
 						</div>
-						
-						<!-- Social Media -->
-						<div class="pt-6 border-t border-[#E5E5E5]">
-							<SocialMedia />
+						<div class="flex items-center gap-3 sm:gap-4">
+							<h2 class="font-title font-bold text-5xl sm:text-6xl md:text-7xl lg:text-9xl tracking-tight text-[#1A1A1A] leading-[0.85]">
+								BORDER-
+							</h2>
+							<div class="h-[1px] flex-1 bg-[#E5E5E5]"></div>
 						</div>
-					</div>
+						<div class="flex items-center gap-3 sm:gap-4">
+							<h2 class="font-title text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-bold tracking-tight text-[#1A1A1A] leading-[0.85]">
+								LINE
+							</h2>
+							<Image src={CactusImg} alt="Cactus" class="flex-1 object-contain w-10 h-10 md:w-full md:h-full " />
+						</div>
 
-					<!-- Right Column: Asymmetric Editorial Spread -->
-					<div class="lg:col-span-6 relative order-first lg:order-last">
-						<div class="editorial-spread relative h-[500px] lg:h-[600px]">
-							
-							<!-- Primary Volume Cover - Large -->
-							<div class="absolute top-0 right-0 w-[280px] lg:w-[320px] transform rotate-[2deg] shadow-[0_20px_60px_rgba(26,26,26,0.15)] hover:shadow-[0_30px_80px_rgba(26,26,26,0.2)] transition-all duration-700 ease-out hover:rotate-[1deg] hover:scale-[1.02] z-30">
-								<Image 
-									src={VolumeCover5} 
-									alt="The Borderline Literary Magazine - Volume V Cover" 
-									class="w-full h-auto object-cover magazine-primary" 
-									loading="eager"
-								/>
-							</div>
-							
-							<!-- Secondary Volume Cover - Medium -->
-							<div class="absolute top-[120px] left-[20px] lg:left-[40px] w-[200px] lg:w-[240px] transform rotate-[-3deg] shadow-[0_15px_45px_rgba(26,26,26,0.12)] hover:shadow-[0_25px_60px_rgba(26,26,26,0.18)] transition-all duration-700 ease-out hover:rotate-[-2deg] hover:scale-[1.02] z-20">
-								<Image 
-									src={VolumeCover4} 
-									alt="The Borderline Literary Magazine - Volume IV Cover" 
-									class="w-full h-auto object-cover magazine-secondary" 
-									loading="eager"
-								/>
-							</div>
-							
-							<!-- Tertiary Volume Cover - Small -->
-							<div class="absolute bottom-[40px] right-[60px] lg:right-[80px] w-[160px] lg:w-[180px] transform rotate-[4deg] shadow-[0_12px_35px_rgba(26,26,26,0.1)] hover:shadow-[0_18px_50px_rgba(26,26,26,0.15)] transition-all duration-700 ease-out hover:rotate-[3deg] hover:scale-[1.02] z-10">
-								<Image 
-									src={VolumeCover1} 
-									alt="The Borderline Literary Magazine - Volume I Cover" 
-									class="w-full h-auto object-cover magazine-tertiary" 
-									loading="eager"
-								/>
-							</div>
-							
-							<!-- Editorial Volume Labels -->
-							<div class="hidden sm:block absolute top-[-20px] left-[60px] text-xs uppercase tracking-[0.2em] text-[#666] font-medium z-40">
-								Our Volumes
-							</div>
-							<div class="hidden sm:block absolute bottom-[-20px] right-[140px] text-xs uppercase tracking-[0.2em] text-[#666] font-medium z-40">
-								Since 2021
-							</div>
-							
-							<!-- Ambient background elements -->
-							<div class="absolute top-[80px] left-[0px] w-24 h-24 bg-[#D4AF37] rounded-full opacity-[0.04] blur-2xl -z-10"></div>
-							<div class="absolute bottom-[100px] right-[20px] w-32 h-32 bg-[#F9F6F1] rounded-full opacity-30 blur-xl -z-10"></div>
+						<div class="flex items-center justify-start pt-4 sm:pt-6">
+							<h3 class="font-lato text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium  tracking-[0.65em] text-[#1A1A1A] leading-tight text-center">
+								LITERARY MAGAZINE
+							</h3>
+						</div>
+					</header>
+					
+					<!-- Editorial CTAs -->
+					<div class="flex flex-col sm:flex-row gap-5 sm:gap-6">
+						<a 
+							href="/magazine" 
+							class="group inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-[#1A1A1A] text-[#FEFEFE] text-base sm:text-lg font-medium tracking-wide uppercase letter-spacing-[0.1em] border border-[#1A1A1A] hover:bg-[#2A2A2A] transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#FEFEFE]"
+						>
+							<span class="group-hover:tracking-[0.15em] transition-all duration-300">Current Issue</span>
+						</a>
+						
+						<a 
+							href="/about" 
+							class="group inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-transparent text-[#1A1A1A] text-base sm:text-lg font-medium tracking-wide uppercase letter-spacing-[0.1em] border border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#FEFEFE] transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#FEFEFE]"
+						>
+							<span class="group-hover:tracking-[0.15em] transition-all duration-300">About</span>
+						</a>
+					</div>
+					
+					<!-- Social Media -->
+				
+				</div>
+
+				<!-- Right Column: Image and Text Overlay -->
+				<div class="hidden lg:flex lg:w-1/2 relative flex-col">
+					<div class="flex-1 relative">
+						<Image src={BannerImg} alt="Banner" class="w-full h-full object-cover" />
+					</div>
+					<!-- Full Black Section with Text -->
+					<div class="bg-black flex items-center  px-8 py-16">
+						<p class="font-azeret-mono text-white text-xl lg:text-3xl font-light leading-relaxed">
+							Inventive publications, collaborative projects and a space for the spaces in between.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="relative h-screen bg-[#FBF1DE]">
+			<!-- Subtle paper texture overlay -->
+			<div class="absolute inset-0 opacity-[0.03] bg-paper-texture pointer-events-none"></div>
+			
+			<div class="w-full h-full flex">
+				<!-- Left Column: Editorial Content -->
+				<div class="hidden lg:flex lg:w-1/2 relative flex-col">
+					<!-- Banner Image -->
+					<div class="flex-1 relative">
+						<Image src={CatImg} alt="Banner" class="w-full h-full " />
+					</div>
+					<!-- Full Black Section with Text -->
+				</div>
+				<div class="w-full lg:w-1/2 flex flex-col justify-between px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 space-y-8 sm:space-y-10">
+					<!-- Masthead -->
+					<div class="flex items-center justify-end font-azeret-mono text-xl font-light leading-relaxed">
+						FREE 
+					</div>
+					<header class="space-y-3 sm:space-y-4">
+						
+						<div class="flex items-center gap-3 sm:gap-4">
+							<h2 class="font-title font-bold text-5xl sm:text-6xl md:text-7xl lg:text-9xl tracking-tight text-[#1A1A1A] leading-[0.85]">
+								MINI ZINE
+							</h2>
+						</div>
+						<div class="flex items-center justify-start pt-4 sm:pt-6">
+							<h3 class="font-lato text-xl sm:text-3xl md:text-4xl lg:text-5xl font-medium   text-[#1A1A1A] leading-tight text-center">
+								Reflections and aspirations
+							</h3>
+						</div>
+						<div class="flex items-center justify-start pt-4 sm:pt-6">
+							<p class="font-azeret-mono text-xl sm:text-3xl  font-light leading-relaxed">
+									(2025-2026)
+							</p>
+						</div>
+					</header>
+					
+					<!-- Editorial CTAs -->
+					<div class="flex flex-col sm:flex-row gap-5 sm:gap-6">
+						<a 
+							href="/zine" 
+							class="group inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-transparent text-[#1A1A1A] text-base sm:text-lg font-medium tracking-wide uppercase letter-spacing-[0.1em] border border-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#FEFEFE] transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#FEFEFE]"
+						>
+							<span class="group-hover:tracking-[0.15em] transition-all duration-300">Explore</span>
+						</a>
+					</div>
+					
+					<!-- Social Media -->
+				
+				</div>
+
+				<!-- Right Column: Image and Text Overlay -->
+			
+			</div>
+		</section>
+
+		<section class="relative h-screen bg-[#82BD99]">
+			<!-- Subtle paper texture overlay -->
+			<div class="absolute inset-0 opacity-[0.03] bg-paper-texture pointer-events-none"></div>
+			
+			<div class="w-full h-full flex">
+				<!-- Left Column: Editorial Content -->
+				<div class="w-full lg:w-3/4 flex flex-col justify-center px-6 sm:px-8 lg:px-12 py-12 sm:py-16 lg:py-20 space-y-8 sm:space-y-10">
+					<!-- Masthead -->
+					<header class="space-y-3 sm:space-y-4">
+						<div class="flex items-center gap-3 sm:gap-4">
+							<h2 class="font-title font-bold text-5xl sm:text-6xl md:text-7xl lg:text-9xl tracking-tight text-[#1A1A1A] leading-[0.85]">
+								Want to get involved?
+							</h2>
+							<div class="h-[1px] flex-1 bg-[#E5E5E5]"></div>
+						</div>
+						<div class="flex items-center justify-start pt-4 sm:pt-6">
+							<p class="font-lato text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium   text-[#FBF1DE] leading-tight text-left">
+								We'd love to hear from you. Send us a message with questions (or just to say hi) and we will get in touch!
+							</p>
+						</div>
+					</header>
+					
+					<!-- Editorial CTAs -->
+					<div class="flex flex-col sm:flex-row gap-5 sm:gap-6">
+						<a 
+							href="/contact" 
+							class="group inline-flex items-center justify-center px-8 sm:px-10 py-4 sm:py-5 bg-[#1A1A1A] text-[#FEFEFE] text-base sm:text-lg font-medium tracking-wide uppercase letter-spacing-[0.1em] border border-[#1A1A1A] hover:bg-[#2A2A2A] transition-all duration-500 ease-out focus:outline-none focus:ring-2 focus:ring-[#D4AF37] focus:ring-offset-2 focus:ring-offset-[#FEFEFE]"
+						>
+							<span class="group-hover:tracking-[0.15em] transition-all duration-300">Send message</span>
+						</a>
+					</div>
+				</div>
+
+				<!-- Right Column: Image and Text Overlay -->
+				<div class="hidden lg:flex lg:w-1/2 relative flex-col">
+						<div class="flex-1 relative">
+							<video src={IntroVideo} class="w-full h-full object-cover"  playsinline muted loop autoplay />
+						</div>
+				</div>
+			</div>
+		</section>
+		<section class="relative h-screen bg-black">
+			<!-- Subtle paper texture overlay -->
+			<div class="absolute inset-0 opacity-[0.03] bg-paper-texture pointer-events-none"></div>
+			
+			<div class="w-full h-full flex">
+				<!-- Left Column: Text Content -->
+				<div class="w-full lg:w-1/2 flex flex-col justify-center px-12 lg:px-20 py-20">
+					<div class="max-w-xl">
+						<h2 class="text-white text-4xl lg:text-5xl font-light leading-tight mb-12">
+							Our literary magazine past volumes, available to read online now in a digital flipbook format.
+						</h2>
+						
+						<!-- Current Issue Button -->
+						<a 
+							href="/magazine" 
+							class="inline-block px-10 py-4 bg-transparent text-white text-sm font-medium tracking-wider uppercase border-2 border-white hover:bg-white hover:text-black transition-all duration-300"
+						>
+							Read now
+						</a>
+					</div>
+				</div>
+		
+				<!-- Right Column: Magazine Covers -->
+				<div class="hidden lg:flex lg:w-1/2 relative items-center justify-center">
+					<div class="relative w-full max-w-2xl h-[600px]">
+						<!-- Header text -->
+						<div class="absolute top-8 left-8 text-gray-500 text-xs uppercase tracking-[0.2em] font-medium">
+							OUR VOLUMES
+						</div>
+						
+						<!-- Primary Volume Cover - The Borderline -->
+						<div class="absolute top-20 right-12 w-[300px] transform rotate-[2deg] shadow-2xl hover:shadow-3xl transition-all duration-500 hover:rotate-[1deg] hover:scale-[1.02] z-30">
+							<Image 
+								src={VolumeCover5} 
+								alt="The Borderline - Poetry, Prose, Photography & Visual Art" 
+								class="w-full h-auto object-cover"
+								loading="eager"
+							/>
+						</div>
+						
+						<!-- Secondary Volume Cover - Dreaming in the Dark -->
+						<div class="absolute top-[180px] left-8 w-[240px] transform -rotate-[3deg] shadow-xl hover:shadow-2xl transition-all duration-500 hover:rotate-[-2deg] hover:scale-[1.02] z-20">
+							<Image 
+								src={VolumeCover4} 
+								alt="Dreaming in the Dark - Poetry, Prose, Visual Art" 
+								class="w-full h-auto object-cover"
+								loading="eager"
+							/>
+						</div>
+						
+						<!-- Tertiary Volume Cover - The Underline -->
+						<div class="absolute bottom-12 right-[100px] w-[200px] transform rotate-[4deg] shadow-lg hover:shadow-xl transition-all duration-500 hover:rotate-[3deg] hover:scale-[1.02] z-10">
+							<Image 
+								src={VolumeCover1} 
+								alt="The Underline - Literary Magazine" 
+								class="w-full h-auto object-cover"
+								loading="eager"
+							/>
+						</div>
+						
+						<!-- Volume IV label -->
+						<div class="absolute top-[160px] right-[140px] bg-white/90 px-3 py-1 rounded">
+							<span class="text-xs font-medium text-gray-700">VOLUME IV</span>
+							<span class="block text-[10px] text-gray-500">October 2023</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
+		<Footer />
 	</main>
 	
 	<!-- Additional structured data for homepage -->
@@ -174,10 +318,20 @@ const homepageStructuredData = {
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700&display=swap');
-	@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,300;1,400&family=Inter:wght@400;500&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 	
-	.font-title {
+	:global(.font-title) {
 		font-family: 'Playfair Display', serif !important;
+	}
+
+	:global(.font-lato) {
+		font-family: 'Lato', sans-serif !important;
+	}
+
+	:global(.font-azeret-mono) {
+		font-family: 'Azeret Mono', monospace !important;
 	}
 
 	/* Editorial Typography */
