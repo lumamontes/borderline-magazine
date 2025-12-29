@@ -72,7 +72,7 @@ const homepageStructuredData = {
 		<Header  />
 
 		<!-- Hero Section: Editorial Layout -->
-		<section class="relative min-h-screen lg:h-screen bg-[#FBF1DE]">
+		<section class="relative min-h-screen lg:h-screen bg-[#FBF1DE] border-b border-[#000000]">
 			<!-- Subtle paper texture overlay -->
 			<div class="absolute inset-0 opacity-[0.03] bg-paper-texture pointer-events-none"></div>
 			
@@ -80,35 +80,36 @@ const homepageStructuredData = {
 				<!-- Mobile: Full screen content -->
 				<div class="lg:hidden w-full min-h-screen flex flex-col justify-center px-6 py-20 space-y-8">
 					<!-- Masthead -->
-					<header class="space-y-6 text-center">
-						<div class="space-y-2">
-							<h1 class="font-title italic text-4xl sm:text-5xl font-light tracking-tight text-[#1A1A1A] leading-[0.85]">
+						<header class="space-y-6 pt-8">
+						<div class="space-y-2 text-left  mx-auto"> 
+							<h1 class="font-title italic text-6xl sm:text-5xl font-light tracking-tight text-[#1A1A1A] leading-[0.85]">
 								THE
 							</h1>
-							<h2 class="font-title font-bold text-4xl sm:text-5xl tracking-tight text-[#1A1A1A] leading-[0.85]">
+							<h2 class="font-title font-bold text-6xl sm:text-5xl tracking-tight text-[#1A1A1A] leading-[0.85]">
 								BORDER-
 							</h2>
-							<h2 class="font-title text-4xl sm:text-5xl font-bold tracking-tight text-[#1A1A1A] leading-[0.85]">
+							<h2 class="font-title text-6xl sm:text-5xl font-bold tracking-tight text-[#1A1A1A] leading-[0.85]">
 								LINE
 							</h2>
 						</div>
-						<Image src={CactusImg} alt="Cactus" class="mx-auto w-16 h-16 object-contain" />
-						<h3 class="font-lato text-sm sm:text-base font-medium tracking-[0.3em] text-[#1A1A1A] leading-tight">
+						<!-- <Image src={CacstusImg} alt="Cactus" class="mx-auto w-1/3 object-contain" /> -->
+						<h3 class="font-lato text-sm sm:text-base font-semibold tracking-[0.3em] text-[#1A1A1A] leading-tight">
 							LITERARY MAGAZINE
 						</h3>
 					</header>
+
+					<!-- Mobile Quote -->
+					<div class="bg-black rounded-lg p-5 mx-autos">
+						<p class="font-azeret-mono text-white text-center text-sm leading-relaxed">
+							Inventive publications, collaborative projects and a space for the spaces in between.
+						</p>
+					</div>
 
 					<!-- Mobile Image -->
 					<div class="relative w-full aspect-[4/3] rounded-lg overflow-hidden">
 						<Image src={BannerImg} alt="Banner" class="w-full h-full object-cover" />
 					</div>
-
-					<!-- Mobile Quote -->
-					<div class="bg-black rounded-lg p-6 mx-4">
-						<p class="font-azeret-mono text-white text-center text-sm leading-relaxed">
-							Inventive publications, collaborative projects and a space for the spaces in between.
-						</p>
-					</div>
+					
 					
 					<!-- Editorial CTAs -->
 					<div class="flex flex-col gap-4 px-4">
@@ -190,16 +191,19 @@ const homepageStructuredData = {
 			</div>
 		</section>
 
-		<section class="relative min-h-screen lg:h-screen bg-[#FBF1DE]">
+		<section class="relative md:min-h-screen lg:h-screen bg-[#FBF1DE]">
 			<!-- Subtle paper texture overlay -->
 			<div class="absolute inset-0 opacity-[0.03] bg-paper-texture pointer-events-none"></div>
 			
 			<div class="w-full h-full flex flex-col lg:flex-row">
 				<!-- Mobile: Full screen content -->
-				<div class="lg:hidden w-full min-h-screen flex flex-col justify-center px-6 py-20 space-y-8">
+				<div class="lg:hidden w-full flex flex-col px-6 py-12 space-y-8">
 					<!-- FREE label -->
-					<div class="flex items-center justify-center">
-						<span class="font-azeret-mono text-lg font-light tracking-wider bg-white px-4 py-2 rounded-full">
+					<div class="flex items-center justify-between"> 
+						<h2 class="font-title font-bold text-3xl sm:text-4xl tracking-tight text-[#1A1A1A] leading-[0.85]">
+							MINI ZINE
+						</h2>
+						<span class="font-azeret-mono text-lg font-light tracking-wide px-4 py-2 rounded-full">
 							FREE
 						</span>
 					</div>
@@ -211,9 +215,7 @@ const homepageStructuredData = {
 
 					<!-- Content -->
 					<header class="space-y-6 text-center">
-						<h2 class="font-title font-bold text-3xl sm:text-4xl tracking-tight text-[#1A1A1A] leading-[0.85]">
-							MINI ZINE
-						</h2>
+						
 						<h3 class="font-lato text-lg sm:text-xl font-medium text-[#1A1A1A] leading-tight">
 							Reflections and aspirations
 						</h3>
@@ -283,7 +285,7 @@ const homepageStructuredData = {
 			
 			<div class="w-full h-full flex flex-col lg:flex-row">
 				<!-- Mobile: Full screen content -->
-				<div class="lg:hidden w-full min-h-screen flex flex-col justify-center px-6 py-20 space-y-8">
+				<div class="lg:hidden w-full min-h-screen flex flex-col justify-around px-6 py-10 space-y-8">
 					<!-- Content -->
 					<header class="space-y-6 text-center">
 						<h2 class="font-title font-bold text-3xl sm:text-4xl tracking-tight text-[#1A1A1A] leading-[0.85]">
@@ -293,13 +295,7 @@ const homepageStructuredData = {
 							We'd love to hear from you. Send us a message with questions (or just to say hi) and we will get in touch!
 						</p>
 					</header>
-
-					<!-- Mobile Video -->
-					<div class="relative w-full aspect-video rounded-lg overflow-hidden">
-						<video src={IntroVideo} class="w-full h-full object-cover" playsinline muted loop autoplay />
-					</div>
-					
-					<!-- Editorial CTAs -->
+<!-- Editorial CTAs -->
 					<div class="flex flex-col gap-4 px-4">
 						<a 
 							href="/contact" 
@@ -308,6 +304,12 @@ const homepageStructuredData = {
 							<span class="group-hover:tracking-[0.15em] transition-all duration-300">Send message</span>
 						</a>
 					</div>
+					<!-- Mobile Video -->
+					<div class="relative w-full rounded-lg overflow-hidden">
+						<video src={IntroVideo} class="w-full h-full object-cover" playsinline muted loop autoplay />
+					</div>
+					
+					
 				</div>
 
 				<!-- Desktop: Left Column: Content -->
